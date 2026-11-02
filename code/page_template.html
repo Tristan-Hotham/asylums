@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Where the Asylums Were</title>
+<meta name="description" content="A map of {{source.located|int}} of Britain's county asylums and psychiatric hospitals from English Wikipedia: when they opened after the 1808 and 1845 Acts, how big they grew, how almost all of them closed after 1961, and what they are now.">
+<meta property="og:title" content="Where the asylums were">
+<meta property="og:description" content="{{source.located|int}} asylums and psychiatric hospitals mapped. Openings peaked in the {{open.peak_dec|raw}}s; {{close.dec1990s|int}} closed in the 1990s alone. Of the closed sites whose fate is known, {{fates_closed.homes_of_known_pct|int}}% are now homes.">
+<meta property="og:image" content="https://maps.tristanhotham.com/asylums/header.png">
+<meta property="og:url" content="https://maps.tristanhotham.com/asylums/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://maps.tristanhotham.com/asylums/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Where the asylums were","description":"Britain's county lunatic asylums and later psychiatric hospitals, mapped from English Wikipedia: opening and closing years, stated size, names and what the sites are now.","creator":{"@type":"Person","name":"Tristan Hotham","identifier":"https://orcid.org/0000-0003-4931-9349"},"license":"https://creativecommons.org/licenses/by-sa/4.0/","url":"https://maps.tristanhotham.com/asylums/","datePublished":"2026"}</script>
+<style>
+/* Ward and brick: whitewashed paper, Victorian brick, ward green, slate. */
+:root{
+  --bg:#F5F2EB; --panel:#EAE5DA; --fg:#22211F; --muted:#66625B; --rule:#DCD5C7; --card:#FFFDF8; --border:#C9C1B2;
+  --hot:#A8442A; --cool:#2F6F8F; --gold:#B8862B; --ink:#2C3A3A; --land:#E7E1D3; --sea:#EEF1F0; --coast:#B9B2A3;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141514; --panel:#1E201E; --fg:#ECEAE4; --muted:#A6A198; --rule:#323430; --card:#191A19; --border:#4A4B46;
+  --hot:#E2795C; --cool:#7DB4CF; --gold:#E0B25A; --ink:#B9CACA; --land:#252723; --sea:#161918; --coast:#4D4E48; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141514; --panel:#1E201E; --fg:#ECEAE4; --muted:#A6A198; --rule:#323430; --card:#191A19; --border:#4A4B46;
+  --hot:#E2795C; --cool:#7DB4CF; --gold:#E0B25A; --ink:#B9CACA; --land:#252723; --sea:#161918; --coast:#4D4E48; color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 18px/1.62 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+.wrap{max-width:700px;margin:0 auto;padding-block:28px 64px}
+.wrap .bleed{width:min(1180px,calc(100vw - 32px));margin-left:calc((100% - min(1180px,100vw - 32px))/2);margin-right:0}
+a{color:inherit;text-decoration-color:var(--hot);text-underline-offset:3px}
+.kicker{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.kicker b{background:var(--ink);color:var(--bg);padding:5px 8px;font-weight:500}
+header.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px 24px;align-items:end;border-bottom:6px double var(--fg);padding-bottom:22px;margin-top:18px}
+h1{font:900 clamp(44px,11vw,92px)/.9 var(--display);letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1 .a{color:var(--hot)}
+.mark{width:clamp(70px,15vw,120px);height:auto;display:block;color:var(--fg)}
+.dek{grid-column:1/-1;font-size:21px;line-height:1.42;margin:8px 0 0;max-width:56ch}
+.byline{font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:14px}
+h2{font:800 34px/1.04 var(--display);letter-spacing:-.01em;margin:54px 0 10px;text-wrap:balance}
+h2 .n{font:500 13px/1 var(--mono);color:var(--hot);display:block;letter-spacing:.1em;margin-bottom:10px}
+h3{font:600 20px/1.25 var(--display);margin:28px 0 6px}
+p{margin:0 0 16px}
+.lede::first-letter{font:900 72px/.8 var(--display);float:left;margin:6px 10px 0 0;color:var(--hot)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:26px 0 8px}
+.stats div{background:var(--card);padding:14px 12px}
+.stats b{display:block;font:900 clamp(22px,4.4vw,32px)/1 var(--display);letter-spacing:-.01em}
+.stats b.h{color:var(--hot)} .stats b.c{color:var(--cool)} .stats b.g{color:var(--gold)} .stats b.p{color:var(--ink)}
+.stats span{font:400 12px/1.35 var(--mono);color:var(--muted);display:block;margin-top:6px}
+@media (max-width:600px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.figure{margin:26px 0 30px}
+.fig-h{font:600 19px/1.25 var(--display);margin:0 0 4px}
+.fig-sub{font:400 13px/1.45 var(--mono);color:var(--muted);margin:0 0 12px}
+.src{font:400 12px/1.45 var(--mono);color:var(--muted);margin-top:10px}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+svg text{font-family:var(--mono);fill:var(--fg)}
+.lab{font-size:12px}.lab.m{fill:var(--muted)}.lab.b{font-weight:500}.lab.s{font-size:11px}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font:400 12px/1.45 var(--mono);padding:8px 10px;border-radius:3px;max-width:300px;z-index:1000;transform:translate(-50%,calc(-100% - 12px));display:none}
+.tip b{font-weight:500}
+.controls{display:flex;gap:8px;align-items:center;margin:0 0 10px;flex-wrap:wrap}
+.scrollrow{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin;padding-bottom:2px;max-width:100%}
+.scrollrow .btn{flex:0 0 auto;white-space:nowrap}
+.ctl-l{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:2px;flex:0 0 auto;align-self:center}
+.btn{font:500 12px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:8px 10px;cursor:pointer;min-height:36px}
+.btn[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid rgba(0,0,0,.2)}
+.btn:focus-visible,input:focus-visible,summary:focus-visible,select:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+.searchbox{position:relative;flex:1 1 260px;min-width:0}
+input[type=search]{font:400 15px/1 var(--mono);background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 11px;min-height:40px;width:100%}
+.suggest{position:absolute;left:0;right:0;top:100%;margin:2px 0 0;padding:0;list-style:none;background:var(--card);border:1px solid var(--border);z-index:1001;font:400 13px/1.3 var(--mono);display:none;max-height:340px;overflow:auto}
+.suggest li{padding:8px 10px;cursor:pointer;border-bottom:1px solid var(--rule)}
+.suggest li span{color:var(--muted)}
+.suggest li[aria-selected="true"],.suggest li:hover{background:var(--panel)}
+.timebox{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:10px;align-items:center;margin:0 0 10px;font:500 13px/1 var(--mono)}
+.timebox .yv{font:900 30px/1 var(--display);min-width:3.2ch;text-align:center;color:var(--hot)}
+.timebox input[type=range]{width:100%;accent-color:var(--hot);height:28px}
+@media (max-width:600px){.timebox{grid-template-columns:auto auto minmax(0,1fr)}.timebox #ylab{grid-column:1/-1}}
+.play{width:42px;height:38px;border-radius:3px;border:1px solid var(--fg);background:var(--fg);color:var(--bg);font:600 15px/1 var(--mono);cursor:pointer}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.side{background:var(--card);border:1px solid var(--border);padding:12px 12px 10px;font:400 13px/1.45 var(--mono);max-height:680px;overflow:auto}
+@media (max-width:900px){.side{max-height:none}}
+.side h4{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px}
+.side h4:first-child{margin-top:2px}
+.side .big{font:800 26px/1.1 var(--display);margin:2px 0 4px}
+.side .sub{color:var(--muted);font-size:12px;margin:0 0 8px}
+.side ol,.side ul{margin:4px 0 8px;padding-left:20px}
+.side li{margin:3px 0}
+.side li small,.side td small{color:var(--muted)}
+.side table{width:100%;border-collapse:collapse;margin:4px 0 6px}
+.side td{padding:4px 4px 4px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.side td.num{text-align:right;white-space:nowrap}
+.side svg{display:block;width:100%;height:auto}
+.back{font:400 12px var(--mono);background:none;border:0;color:var(--muted);padding:0;cursor:pointer;text-decoration:underline;margin-bottom:6px}
+.go{cursor:pointer;text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}
+.lmap{height:640px;border:1px solid var(--border);background:var(--sea);border-radius:2px;position:relative}
+@media (max-width:600px){.lmap{height:min(66vh,520px)}}
+.mapfail{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;font:400 13px/1.5 var(--mono);color:var(--muted)}
+.maplibregl-map{font:400 12px/1.4 var(--mono)}
+.maplibregl-ctrl-group{background:var(--card)!important}
+.maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:none}
+:root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon{filter:invert(1)}
+.maplibregl-ctrl-attrib{background:color-mix(in srgb,var(--card) 85%,transparent)!important;color:var(--muted);font:400 11px/1.3 var(--mono)!important}
+.maplibregl-ctrl-attrib a{color:var(--fg)!important}
+.maplibregl-popup-content{background:var(--card);color:var(--fg);font:400 12.5px/1.45 var(--mono);padding:11px 13px;border:1px solid var(--border);border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,.2)}
+.maplibregl-popup-content b.t{display:block;font:700 16px/1.2 var(--display);margin-bottom:2px}
+.maplibregl-popup-content .al{color:var(--muted);font-size:11.5px;margin-bottom:6px}
+.maplibregl-popup-content table{border-collapse:collapse;margin:4px 0}
+.maplibregl-popup-content td{padding:2px 8px 2px 0;vertical-align:top}
+.maplibregl-popup-content td:first-child{color:var(--muted)}
+.maplibregl-popup-tip{border-top-color:var(--card)!important;border-bottom-color:var(--card)!important}
+.maplibregl-popup-close-button{font-size:18px;color:var(--muted);padding:0 6px}
+.lyr{margin:0}
+.lyrBtn{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;font:600 12px/1 var(--mono);padding:8px 10px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lyrBtn[aria-expanded="true"]{background:var(--fg);color:var(--bg)}
+.lyrPanel{background:var(--card);color:var(--fg);border:1px solid var(--border);border-radius:3px;padding:10px 12px 8px;margin-top:6px;width:240px;box-shadow:0 2px 10px rgba(0,0,0,.15);font:400 12px/1.3 var(--mono);max-height:min(60vh,460px);overflow:auto}
+.lyrPanel[hidden]{display:none}
+.lyrPanel .row{margin:0 0 9px}
+.lyrPanel label{display:flex;gap:6px;align-items:center;cursor:pointer;font-weight:600}
+.lyrPanel .sub{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:11px;margin-top:3px}
+.lyrPanel input[type=range]{width:100%;accent-color:var(--fg)}
+.lyrPanel .hd{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:10px 0 7px;border-top:1px solid var(--rule);padding-top:9px}
+.lyrPanel .reset{font:400 11px var(--mono);color:var(--muted);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.cityL{font:500 11px/1 var(--mono);color:var(--fg);white-space:nowrap;text-shadow:0 0 3px var(--bg),0 0 3px var(--bg),0 0 2px var(--bg);pointer-events:none}
+.cityL i{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--fg);margin-right:4px;vertical-align:1px}
+.cityL.s{font-size:10px;font-weight:400;opacity:.85}
+.mapnote{position:absolute;left:10px;bottom:28px;z-index:2;background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--border);border-radius:3px;padding:6px 9px;font:400 12px/1.35 var(--mono);max-width:min(300px,62%);box-shadow:0 1px 4px rgba(0,0,0,.12);pointer-events:none}
+.mapnote b{font-weight:600}
+.mapnote:empty{display:none}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font:400 12px/1.3 var(--mono);color:var(--muted);margin-top:8px;align-items:center}
+.legend span{display:inline-flex;align-items:center}
+.legend i{display:inline-block;width:13px;height:13px;margin-right:6px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
+.legend i.ring{background:transparent!important;border:2px solid var(--muted)}
+.pull{font:600 26px/1.25 var(--display);border-left:6px solid var(--hot);padding:4px 0 4px 18px;margin:30px 0}
+.pull small{display:block;font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:8px}
+.note{background:var(--panel);border:1px solid var(--rule);padding:14px 16px;font-size:16px;margin:22px 0}
+.note h3{margin-top:0}
+.tl{list-style:none;margin:18px 0 22px;padding:0;border-left:3px solid var(--rule)}
+.tl li{position:relative;padding:0 0 14px 20px}
+.tl li::before{content:"";position:absolute;left:-8px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--card);border:3px solid var(--hot)}
+.tl b{font:800 20px/1.1 var(--display);display:block}
+.tl small{font:400 12px/1.4 var(--mono);color:var(--muted)}
+table.tbl{width:100%;border-collapse:collapse;font:400 13px/1.4 var(--mono)}
+table.tbl th{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:6px 6px 6px 0;border-bottom:2px solid var(--fg)}
+table.tbl td{padding:6px 6px 6px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.tbl td.r,table.tbl th.r{text-align:right;white-space:nowrap}
+table.tbl tr[data-i]{cursor:pointer}
+table.tbl tr[data-i]:hover td{background:var(--panel)}
+.tablebox{max-height:460px;overflow:auto;border:1px solid var(--border);background:var(--card);padding:0 10px}
+details{margin:14px 0}
+summary{font:500 13px/1.4 var(--mono);cursor:pointer;color:var(--fg);padding:8px 0}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.cta a{font:500 13px/1 var(--mono);text-decoration:none;border:1px solid var(--fg);padding:11px 14px;border-radius:3px}
+.cta a.p{background:var(--hot);border-color:var(--hot);color:#fff}
+footer{border-top:6px double var(--fg);margin-top:56px;padding-top:16px;font:400 13px/1.55 var(--mono);color:var(--muted)}
+footer p{margin:0 0 10px}
+.theme{position:fixed;right:12px;bottom:12px;z-index:1002}
+@media print{.theme,.controls{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="kicker"><b>Data study</b><span>History</span><span>Britain and Northern Ireland, 1800 to 2026</span></div>
+<header class="hero">
+  <h1>Where the <span class="a">asylums</span> were</h1>
+  <svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><g id="heroMark"></g></svg>
+  <p class="dek">For a century and a half, people with a mental illness or a learning disability in Britain were most likely to be cared for in a county asylum: a vast building in its own grounds, a few miles out of town. Almost all of them have now closed. This is a map of {{source.located|int}} of them, from English Wikipedia: where they were built, when, how big they grew, and what the sites are now.</p>
+</header>
+<div class="byline">Dr Tristan Hotham · Independent researcher · 2026 · Data: English Wikipedia (CC BY-SA 4.0); Natural Earth; ONS and OSNI boundaries</div>
+
+<div class="stats">
+  <div><b class="p">{{source.located|int}}</b><span>asylums and psychiatric hospitals mapped from {{source.pages|int}} Wikipedia articles</span></div>
+  <div><b class="h">{{open.peak_dec|raw}}s</b><span>the busiest decade for opening them: {{open.peak_n|int}} opened</span></div>
+  <div><b class="g">{{close.dec1990s|int}}</b><span>closed in the 1990s alone, {{close.y1990s_pct|int}}% of every closure with a year</span></div>
+  <div><b class="c">{{fates_closed.homes_of_known_pct|int}}%</b><span>of closed sites whose fate the article states are now homes</span></div>
+</div>
+
+<p class="lede">In 1808 Parliament allowed the counties of England and Wales to build asylums for "pauper lunatics", people who until then had often been kept in workhouses, prisons or private madhouses. Few did at first. In 1845 a second pair of Acts made it a duty, and the building began in earnest: big, solid, self-contained institutions with their own farms, chapels, laundries, water towers and cemeteries, set in open country. By the middle of the twentieth century they held tens of thousands of people, many for most of their lives.</p>
+<p>Then, from the 1960s, policy turned against them. In 1961 the Minister of Health, Enoch Powell, told a mental health conference that the old asylums would have to go, and over the next forty years they did: closed, emptied, and sold. Many became upmarket flats, their names changed again. Press play on the map below to watch them open and close.</p>
+
+<div class="note"><h3>A note on language</h3><p>This page uses the names the institutions had at the time, such as "lunatic asylum", because they are part of the record. They are not how we would describe anyone today. The people who lived in these places were patients and residents, many of them poor, many admitted for conditions that would now be treated at home or not treated as illness at all.</p></div>
+
+<h2><span class="n">01 · The map</span>{{source.located|int}} asylums and psychiatric hospitals</h2>
+<div class="bleed" id="atlas">
+<div class="timebox"><button class="play" id="play" aria-label="Play through the years">&#9654;</button><span class="yv" id="yv">2026</span><input type="range" id="yr" min="1800" max="2026" step="1" value="2026" aria-label="Year"><span id="ylab" style="color:var(--muted);font-size:12px">everything ever built</span></div>
+<div class="controls">
+  <div class="scrollrow" id="modeRow"><span class="ctl-l">Show</span><button class="btn" data-m="all" aria-pressed="true">Everything ever built</button><button class="btn" data-m="year" aria-pressed="false">Open in the chosen year</button></div>
+</div>
+<div class="controls"><div class="scrollrow" id="fateRow"><span class="ctl-l">Now</span></div></div>
+<div class="controls">
+  <div class="searchbox"><input type="search" id="q" placeholder="Search a hospital or an old name (Colney Hatch, Severalls...)" aria-label="Search a hospital or an old name" autocomplete="off"><ul class="suggest" id="sug" role="listbox"></ul></div>
+</div>
+<div class="controls"><div class="scrollrow" id="focusRow"><span class="ctl-l">Zoom to</span></div></div>
+<div class="mapgrid">
+  <div><div id="map" class="lmap" role="application" aria-label="Map of asylums and psychiatric hospitals in Britain and Northern Ireland, coloured by what they are now and sized by stated beds"><div class="mapnote" id="mapnote"></div></div>
+    <div class="legend" id="legend"></div></div>
+  <div class="side" id="side" aria-live="polite"></div>
+</div>
+<p class="src">Circles: each asylum or psychiatric hospital with coordinates in its Wikipedia article. Colour: what the site is now, as the article states it. Area: the largest number of beds or patients the article states, where it states one; small dots have none. In "Open in the chosen year", filled circles were open that year and faint rings had already closed. Source: English Wikipedia (CC BY-SA 4.0), revisions of 2026. Coastline: Natural Earth. Counties: ONS and OSNI (Open Government Licence). Relief and grey map tiles: Esri.</p>
+</div>
+
+<h2><span class="n">02 · A short history</span>From madhouse to county asylum</h2>
+<p>The history below is from the Wikipedia articles on the Acts and on the asylums themselves, which I quote and credit; the counts that follow are from my data.</p>
+<ol class="tl">
+<li><b>1774</b>The Madhouses Act sets out "a legal framework for regulating madhouses", private houses whose owners were paid to keep people. <small>Wikipedia, Madhouses Act 1774</small></li>
+<li><b>1808</b>The County Asylums Act, or Wynn's Act, "permitted, but did not compel" magistrates to build asylums for pauper lunatics. "Nine counties first applied". By 1827 only nine county asylums had opened. <small>Wikipedia, County Asylums Act 1808; Lunatic asylum; Lunacy Act 1845</small></li>
+<li><b>1845</b>The Lunacy Act and the County Asylums Act together set up the Lunacy Commission and the public network of county asylums. The Lunacy Act's most important provision, in Wikipedia's words, was "a change in the status of mentally ill people to patients". <small>Wikipedia, Lunacy Act 1845</small></li>
+<li><b>1930</b>The Mental Treatment Act allows voluntary admission and "replaced the term asylum with mental hospital". <small>Wikipedia, Mental Treatment Act 1930</small></li>
+<li><b>1959</b>The Mental Health Act aims to move treatment "away from institutional care to that in the community". At the time 0.4% of the population of England lived in asylums. <small>Wikipedia, Mental Health Act 1959</small></li>
+<li><b>1961</b>Enoch Powell, Minister of Health, gives his "Water Tower" speech. The Hospital Plan for England and Wales follows in 1962. <small>Wikipedia, Enoch Powell</small></li>
+<li><b>1990</b>The National Health Service and Community Care Act puts Care in the Community into law; its reforms come into effect in April 1993. <small>Wikipedia, Care in the Community</small></li>
+</ol>
+
+<h2><span class="n">03 · The rise</span>Two waves of building</h2>
+<p>Of the {{source.kept|int}} places in my data, {{open.n|int}} have an opening year in their article. A handful are much older than the county system: Bethlem in London, founded in 1247 and the origin of the word "bedlam", and {{open.before1800|int}} in all that opened before 1800, mostly charitable hospitals and private houses. Between 1808 and 1844, under the permissive first Act, {{open.y1808_1844|int}} opened. Then the pace picked up. {{open.y1845_1889|int}} opened between 1845 and 1889, with the busiest decade the {{open.peak_dec|raw}}s ({{open.peak_n|int}}). After a lull in the {{open.trough_dec|raw}}s ({{open.dec1880s|int}}) came a second wave around the turn of the century, as the cities ran out of room: {{open.dec1890s|int}} in the 1890s and {{open.dec1900s|int}} in the 1900s, many of them huge. In all, {{open.y1845_1914_pct|int}}% of the places with an opening year opened between 1845 and 1914.</p>
+<div class="figure"><p class="fig-h">Openings and closures by decade</p><p class="fig-sub">Asylums and psychiatric hospitals by the decade in which their Wikipedia article says they opened (up) and closed (down). {{open.before1800|int}} that opened before 1800 are not shown. Hover or tap a bar.</p><div class="chart" id="decChart"></div><div class="legend"><span><i class="sq" style="background:var(--cool);border-radius:2px"></i>opened</span><span><i style="background:var(--hot);border-radius:2px"></i>closed</span></div></div>
+<p>The number open at once tells the same story as a single line. {{curve.y1845|int}} of the places in my data were open in 1845, {{curve.y1900|int}} in 1900 and {{curve.y1914|int}} by 1914. The count kept creeping up for another half century, as new hospitals opened and almost none closed, and peaked at {{curve.peak_n|int}} between {{curve.peak_first|raw}} and {{curve.peak_last|raw}}.</p>
+<div class="figure"><p class="fig-h">The rise and fall: how many were open each year</p><p class="fig-sub">Places open in each year, of the {{curve.n|int}} with an opening year and either a closing year or no closure recorded. Drag the map's year slider and the marker follows. Hover the line.</p><div class="chart" id="openChart"></div></div>
+
+<h2><span class="n">04 · The fall</span>"There they stand"</h2>
+<p class="pull">"There they stand, isolated, majestic, imperious, brooded over by the gigantic water-tower and chimney combined, rising unmistakable and daunting out of the countryside, the asylums which our forefathers built with such immense solidity to express the notions of their day."<small>Enoch Powell, the Water Tower speech, 1961, as quoted in Wikipedia's article on Powell</small></p>
+<p>Powell was right that they would resist. In 1961, {{curve.y1961|int}} of the places in my data were open, and in 1980 there were still {{curve.y1980|int}}: in the twenty years after the speech almost nothing closed. Of the {{close.n|int}} closures with a year, only {{close.before1961|int}} came before 1961 and {{close.y1961_1979|int}} between 1961 and 1979. Then the dam broke: {{close.dec1980s|int}} closed in the 1980s, {{close.dec1990s|int}} in the 1990s and {{close.dec2000s|int}} in the 2000s. {{close.y1980_1999_pct|int}}% of all the closures happened between 1980 and 1999, the years of Care in the Community; the median closing year is {{close.median|raw}}. By 2000 the number open had fallen to {{curve.y2000|int}}, and today {{curve.y2026|int}} of these places are open, many of them as small modern units on part of an old site.</p>
+<p>For the Victorian asylums the gap between opening and closing was long. Of the {{gap.vic_n|int}} that opened between 1808 and 1914 and have both years, the median lasted {{gap.vic_median_life|int}} years, and {{gap.vic_over100|int}} ({{gap.vic_over100_pct|int}}%) lasted a century or more. Peak building, in the 1900s, and peak closing, in the 1990s, are {{gap.peak_to_peak|int}} years apart.</p>
+
+<h2><span class="n">05 · Size</span>Small towns of their own</h2>
+<p>The articles give a size for {{beds.n|int}} of the {{source.kept|int}} places, either in the infobox or in the text, usually as beds or patients at some date. These are not consistent peaks, but they show the scale. {{beds.over1000|int}} places held a thousand or more at some point and {{beds.over2000|int}} two thousand or more. The largest is Whittingham, near Preston in Lancashire, which by 1939 held {{beds.top.0.beds|int}} patients, "the largest mental hospital in Great Britain" according to its article. Prestwich, near Manchester, held {{beds.top.1.beds|int}} by 1903. The median stated size of an asylum opened between 1808 and 1914 is {{beds.vic_median|int}}; for units opened since 1990 it is {{beds.modern_median|int}}.</p>
+<div class="figure"><p class="fig-h">The biggest, by the largest size their article states</p><p class="fig-sub">Beds or patients, from the infobox or the largest figure the text gives (for example "accommodation for 1,700 patients"). Click a bar to find it on the map.</p><div class="chart" id="bigChart"></div></div>
+
+<h2><span class="n">06 · Clusters</span>London's ring and the Epsom five</h2>
+<p>London built its asylums in the countryside around it. Only {{london.inner_vic|int}} of the places in my data that opened between 1830 and 1939 lie within 10 km of Charing Cross, against {{london.ring_vic|int}} between 10 and 40 km out, a ring through {{london.ring_counties.0.0|raw}}, {{london.ring_counties.2.0|raw}}, {{london.ring_counties.3.0|raw}}, {{london.ring_counties.4.0|raw}} and the outer edge of today's Greater London. The ring's stated sizes alone add up to {{london.ring_beds_sum|int}} beds or patients, for the {{london.ring_beds_n|int}} that give one. {{london.ring_closed|int}} of the {{london.ring_vic|int}} have closed, and {{london.ring_homes|int}} are now homes.</p>
+<p>The densest knot is on the Horton estate west of Epsom in Surrey, where the London County Council built "five large psychiatric hospitals", in the words of Wikipedia's article on the Epsom Cluster; the original plan was for six, housing up to 12,000 patients. In my data the five opened between {{epsom.opened_min|raw}} and {{epsom.opened_max|raw}}, all within {{epsom.max_km|f1}} km of each other and about {{epsom.km_london|int}} km from central London, and four of them state sizes adding up to {{epsom.beds_sum|int}}. All but St Ebba's had closed by {{epsom.closed_max|raw}}.</p>
+<div class="cta" style="margin-top:0"><a href="#atlas" id="goLondon">Show the London ring on the map</a><a href="#atlas" id="goEpsom">Show the Epsom cluster</a></div>
+
+<h2><span class="n">07 · What they are now</span>Mostly homes</h2>
+<p>I read what each site is now from the words its article uses, first in the lead and, if that says nothing, in the rest of the article's opening text: "converted into apartments", "redeveloped for residential use", "demolished", "derelict" and so on (the rules are in the methods below). Of the {{fates_closed.n|int}} places that are no longer open, {{fates_closed.homes|int}} ({{fates_closed_pct.homes|int}}%) are now homes, in converted buildings or new housing on the old grounds; {{fates_closed.other|int}} have another new use, such as a university campus, offices or, at Banstead and Parc, a prison; {{fates_closed.demolished|int}} are recorded as demolished with no new use stated; and {{fates_closed.derelict|int}} as derelict or in ruins. For {{fates_closed.unknown|int}} ({{fates_closed_pct.unknown|int}}%) the opening text of the article does not say. Of the closed sites whose fate is stated, {{fates_closed.homes_of_known_pct|int}}% are homes.</p>
+<div class="figure"><p class="fig-h">What the sites are now</p><p class="fig-sub">All {{source.kept|int}} places, by what their Wikipedia article says the site is now. Click a bar to show only those on the map.</p><div class="chart" id="fateChart"></div></div>
+<p>The flats often keep the buildings and lose the name. Developers have turned the old wards into estates called Princess Park Manor (Colney Hatch, later Friern Hospital), Virginia Park (Holloway Sanatorium) and Wadsley Park Village (Middlewood). {{fates_detail.homes_with_demolition|int}} of the {{fates.homes|int}} housing sites also mention demolition, usually of the later wards around a retained main block. Many survivors are protected: {{listed.n|int}} of the {{source.kept|int}} articles ({{listed.pct|int}}%) say the buildings or part of them are listed, including {{listed.vic_n|int}} of the asylums opened between 1808 and 1914 ({{listed.vic_pct|int}}%). Three are Grade I: Bootham Park in York, Holloway Sanatorium near Virginia Water in Surrey, and Grove Place in Hampshire.</p>
+
+<h2><span class="n">08 · Names</span>From asylum to mental hospital to St Somebody's</h2>
+<p>Asylums changed their names more than once, and the old names survive mostly in the articles. {{names.asylum_any|int}} of the {{source.kept|int}} articles ({{names.asylum_any_pct|int}}%) record a name with "asylum" in it, {{names.lunatic_asylum|int}} with "lunatic asylum" or similar, and {{names.mental_hospital|int}} a "mental hospital" name; {{names.asylum_then_mh|int}} record both. Only {{names.title_asylum|int}} articles are still titled "asylum". Where an article gives a single year for a "mental hospital" name ({{names.mh_years_n|int}} places), {{names.mh_years_1920_1939|int}} fall between 1920 and 1939, around the Mental Treatment Act of 1930, which made "mental hospital" the official term. After the NHS took over in 1948 many took a saint's name or a place name instead: {{names.saint_titles|int}} of today's titles begin with "St". Exminster in Devon is typical: Devon County Lunatic Asylum, then Devon Mental Hospital, then Exe Vale Hospital.</p>
+<div class="figure"><p class="fig-h">Which names the articles record</p><p class="fig-sub">Places whose article records at least one name of each kind, from the title, the infobox's former names and the text. A place can have several. Hover a bar.</p><div class="chart" id="nameChart"></div></div>
+
+<h2><span class="n">09 · Out of town</span>A few miles from anywhere</h2>
+<p>Powell's "isolated" was accurate. The asylums were built where land was cheap and the air thought healthy, with room for a farm. I measured the distance from each place to the nearest town or city that has at least 100,000 people today ({{town.n_big|int}} places in Natural Earth). For the asylums opened between 1845 and 1914 the median distance is {{town.y1845_1914.median|f1}} km, and {{town.y1845_1914.over5_pct|int}}% are more than 5 km from such a town. For places opened since 1948, mostly smaller units, the share more than 5 km away is {{town.y1948_.over5_pct|int}}%. Present-day populations are a blunt measure for Victorian siting, so treat these as rough.</p>
+<div class="figure"><p class="fig-h">Distance to the nearest big town, by when they opened</p><p class="fig-sub">Share of places more than 5 km and more than 15 km from the nearest town of 100,000 or more today. Hover a bar.</p><div class="chart" id="townChart"></div></div>
+
+<h2><span class="n">10 · Every place</span>The full list</h2>
+<div class="figure"><p class="fig-sub">All {{source.kept|int}} places, with the years, size and fate their article states. Click a row to see it on the map; {{source.not_located|int}} have no coordinates.</p><div class="tablebox"><table class="tbl" id="allTable"></table></div></div>
+
+<h2><span class="n">11 · How I did this</span>Methods and caveats</h2>
+<p><b>Data.</b> I started from {{source.pages|int}} English Wikipedia articles found by walking {{source.n_cats|int}} categories under Psychiatric hospitals in the United Kingdom, Former psychiatric hospitals in the United Kingdom and Defunct hospitals in England, Scotland and Wales, three levels deep, with the first 6,000 characters of each article's wikitext (its infobox and opening text) and the revision of 2026 I used. I kept an article if it describes a single place and calls it a psychiatric or mental hospital, an asylum, or an institution for people with learning disabilities in the first two sentences of its lead ({{source.rule_A|int}} articles), or in its infobox type or speciality, or files it in a psychiatric hospital category and uses one of those words in its text. That kept {{source.kept|int}} and dropped {{source.dropped|int}}: {{source.drop_general|int}} general and other hospitals, {{source.drop_nothospital|int}} articles about country houses, workhouses, streets and other things that are not hospitals, {{source.drop_org|int}} about people, NHS trusts, tribunals, units within another hospital or the Epsom Cluster as a group, and {{source.drop_merged|int}} duplicate of the same site. The dropped list, with reasons, is in the data.</p>
+<p><b>Fields.</b> Coordinates come from the coord template in the wikitext ({{source.coord_wikitext|int}}) or the Wikipedia API ({{source.coord_api|int}}). Opening and closing years come from the infobox, or failing that from phrases such as "opened in 1851" in the lead or from Wikipedia's establishment categories; a place counts as still open when its article describes it in the present tense and gives no closing year. Size is the infobox beds figure or the largest number of beds or patients the text states with words such as "accommodation for" or "had". What a site is now comes from keyword rules on the lead, and on the rest of the opening text if the lead says nothing; a site with housing counts as homes even if most buildings were demolished. Listed status comes from phrases such as "Grade II listed" and from listed building categories.</p>
+<p><b>What this is not.</b> It is not a complete list of Britain's asylums: Wikipedia has articles on only some of them, the categories miss others, and Northern Ireland and Wales are thinly covered ({{nations.Northern Ireland|int}} and {{nations.Wales|int}} places). It also includes some modern mental health units, a few private houses and {{kinds.ld|int}} institutions for people with learning disabilities, which were part of the same system. The years, sizes and fates are what the articles say, read by rules, and the articles are uneven: some report the first patients, some the foundation stone, some the closure of the last ward. Only the first 6,000 characters of each article were available, so the later history is often missing, and {{fates_closed.unknown|int}} closed sites have no stated fate. The Wikidata extract I was given turned out to use the class for clinics rather than psychiatric hospitals: none of its {{source.wd_items|int}} items matched an article here (most were community health centres and dental practices), so I did not use it.</p>
+<details><summary>Sources and licences</summary>
+<ul>
+<li>English Wikipedia contributors, articles in the categories above and the articles on the County Asylums Act 1808, Lunacy Act 1845, Lunatic asylum, Madhouses Act 1774, Mental Treatment Act 1930, Mental Health Act 1959, Care in the Community, Enoch Powell, Epsom Cluster, Colney Hatch Lunatic Asylum, Whittingham Hospital and Bethlem Royal Hospital (revisions of 2026, ids in the data). CC BY-SA 4.0. Short quotations are credited in the text.</li>
+<li>Natural Earth coastline and populated places (public domain). County outlines: ONS and OSNI, Open Government Licence.</li>
+<li>Relief and grey base map tiles (optional layers): Esri.</li>
+</ul></details>
+
+<div class="cta"><a class="p" href="https://doi.org/10.5281/zenodo.23873001">Read the paper</a><a href="https://github.com/Tristan-Hotham/asylums">Data and code</a><a href="https://blog.tristanhotham.com/2026/10/31/asylums/">Blog post</a></div>
+
+<footer>
+<p>Dr Tristan Hotham, Independent researcher. ORCID <a href="https://orcid.org/0000-0003-4931-9349">0000-0003-4931-9349</a>.</p>
+<p>Cite as: Hotham, T. (2026) Where the asylums were: Britain's county asylums and psychiatric hospitals, from the 1808 Act to Care in the Community. Zenodo. <a href="https://doi.org/10.5281/zenodo.23873001">https://doi.org/10.5281/zenodo.23873001</a></p>
+<p>A companion to <a href="https://maps.tristanhotham.com/workhouses/">What's left of the workhouse?</a></p>
+<p>Licence: code MIT; text and figures CC BY 4.0; the table derived from Wikipedia (data/asylums.csv) CC BY-SA 4.0.</p>
+<p>I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.</p>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+<button class="btn theme" id="theme" aria-label="Toggle dark mode">◐</button>
+<script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script>
+const R = /*RESULTS*/;
+const SITE = /*SITE*/;
+const LAND = /*LAND*/;
+const CITIES = /*CITIES*/;
+const fmt = n => n == null || n === "" ? "n/a" : Math.round(n).toLocaleString("en-GB");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const tip = document.getElementById("tip");
+function showTip(h, x, y) { tip.innerHTML = h; tip.style.display = "block"; const w = tip.offsetWidth; x = Math.max(w / 2 + 8, Math.min(innerWidth - w / 2 - 8, x)); tip.style.left = x + scrollX + "px"; tip.style.top = y + scrollY + "px"; }
+function hideTip() { tip.style.display = "none"; }
+document.addEventListener("click", e => { if (!e.target.closest || !e.target.closest(".chart")) hideTip(); });
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+const lbl = (svg, x, y, s, cls = "lab", anchor = "start") => { const t = el("text", { x, y, class: cls, "text-anchor": anchor }, svg); t.textContent = s; return t; };
+const redraws = [];
+function resp(box, render) { let last = 0; const go = force => { const w = Math.max(280, Math.round(box.clientWidth)); if (!force && Math.abs(w - last) < 4) return; last = w; box.innerHTML = ""; render(w, w < 560); }; new ResizeObserver(() => go()).observe(box); go(); redraws.push(() => go(true)); }
+const isDark = () => { const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const small = () => innerWidth < 900;
+const C = SITE.cols, IX = Object.fromEntries(C.map((c, i) => [c, i]));
+const P = SITE.rows.map((r, i) => Object.fromEntries(C.map((c, k) => [c, r[k]]).concat([["i", i]])));
+const FATES = SITE.fates, FK = FATES.map(f => f[0]), FL = FATES.map(f => f[1]), FCOL = FATES.map(f => f[2]);
+const YMIN = 1800, YMAX = 2026;
+const wiki = p => "https://en.wikipedia.org/w/index.php?title=" + encodeURIComponent(p.title.replace(/ /g, "_")) + "&oldid=" + p.revid;
+const yrs = p => (p.opened ? p.opened : "?") + " to " + (p.closed ? p.closed : p.open_now ? "today" : p.status === "closed" ? "closed, year not stated" : "?");
+
+/* hero mark: water tower and chimney, as in Powell's speech */
+(function () {
+  const g = document.getElementById("heroMark");
+  el("path", { d: "M10 108 L110 108", stroke: "currentColor", "stroke-width": 3 }, g);
+  el("rect", { x: 22, y: 64, width: 52, height: 44, fill: "#A8442A", stroke: "currentColor", "stroke-width": 2.4 }, g);
+  el("path", { d: "M18 66 L48 46 L78 66 Z", fill: "#FFFDF8", stroke: "currentColor", "stroke-width": 2.4 }, g);
+  [30, 44, 58].forEach(x => el("rect", { x, y: 76, width: 8, height: 12, fill: "#FFFDF8", stroke: "currentColor", "stroke-width": 1.4 }, g));
+  el("rect", { x: 84, y: 34, width: 14, height: 74, fill: "#FFFDF8", stroke: "currentColor", "stroke-width": 2.4 }, g);
+  el("rect", { x: 78, y: 16, width: 26, height: 20, fill: "#2F6F8F", stroke: "currentColor", "stroke-width": 2.4 }, g);
+  el("path", { d: "M78 16 L91 8 L104 16", fill: "none", stroke: "currentColor", "stroke-width": 2.4 }, g);
+})();
+
+/* ---------- state ---------- */
+const LYDEF = { names: true, counties: true, relief: false, reliefK: 45, grey: false, size: 1 };
+const LY = { ...LYDEF };
+try { Object.assign(LY, JSON.parse(localStorage.getItem("as_layers") || "{}")); } catch (e) {}
+const saveLY = () => { try { localStorage.setItem("as_layers", JSON.stringify(LY)); } catch (e) {} };
+const S = { y: YMAX, mode: "all", fates: new Set(FK.map((f, i) => i)), sel: null, play: null };
+const stateOf = p => { if (S.mode === "all") return 1; if (!p.opened || p.opened > S.y) return 0; if (p.closed && p.closed <= S.y) return 2; if (!p.closed && p.status === "closed") return p.opened <= S.y ? 3 : 0; return 1; };
+function geo() {
+  return { type: "FeatureCollection", features: P.filter(p => p.lat != null && S.fates.has(p.fate)).map(p => ({ type: "Feature", id: p.i,
+    properties: { i: p.i, f: p.fate, b: p.beds || 0, st: stateOf(p), sel: S.sel === p.i ? 1 : 0 }, geometry: { type: "Point", coordinates: [p.lon, p.lat] } })).filter(f => f.properties.st > 0) };
+}
+function counts() {
+  let open = 0, closed = 0; const byF = new Array(FK.length).fill(0);
+  P.forEach(p => { if (S.mode === "all" && p.lat == null) return; const s = stateOf(p); if (s === 1) { open++; byF[p.fate]++; } else if (s >= 2) closed++; });
+  return { open, closed, byF };
+}
+
+/* ---------- map ---------- */
+let map = null, mapOK = false;
+const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/";
+const BRITAIN = [[-8.2, 49.85], [1.85, 58.75]];
+const HOME = () => ({ bounds: BRITAIN, fitBoundsOptions: { padding: 12 } });
+const BASE_R = ["case", [">", ["get", "b"], 0], ["max", 3.2, ["*", .2, ["sqrt", ["get", "b"]]]], 2.6];
+function radiusExpr() { return ["interpolate", ["linear"], ["zoom"], 4, ["*", .95 * LY.size, BASE_R], 6, ["*", 1.4 * LY.size, BASE_R], 9, ["*", 2.4 * LY.size, BASE_R]]; }
+function fateColor() { return ["match", ["get", "f"], ...FK.flatMap((k, i) => [i, FCOL[i]]), "#999"]; }
+function initMap() {
+  if (!window.maplibregl) { document.getElementById("map").insertAdjacentHTML("beforeend", '<div class="mapfail">The interactive map could not load here (it needs the MapLibre library from cdn.jsdelivr.net). The charts and the full list below still work.</div>'); return; }
+  try {
+    map = new maplibregl.Map({ container: "map", ...HOME(), minZoom: 3.5, maxZoom: 15, maxBounds: [[-16, 47], [8, 62.5]], attributionControl: false, dragRotate: false, pitchWithRotate: false,
+      style: { version: 8, sources: {}, layers: [{ id: "bg", type: "background", paint: { "background-color": css("--sea") } }] } });
+  } catch (e) { document.getElementById("map").insertAdjacentHTML("beforeend", '<div class="mapfail">This browser could not start the interactive map (it needs WebGL). The charts and the full list below still work.</div>'); return; }
+  map.touchZoomRotate.disableRotation();
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "bottom-right");
+  map.addControl(new maplibregl.ScaleControl({ unit: "metric", maxWidth: 100 }), "bottom-right");
+  map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: 'Data: English Wikipedia (CC BY-SA 4.0) · Natural Earth · ONS, OSNI (OGL)' }), "bottom-right");
+  map.on("error", e => { /* missing tiles offline: the plain base map still works */ });
+  map.on("load", () => {
+    mapOK = true;
+    const at = document.querySelector(".maplibregl-ctrl-attrib.maplibregl-compact"); if (at) { at.classList.remove("maplibregl-compact-show"); at.removeAttribute("open"); }
+    map.addSource("land", { type: "geojson", data: LAND });
+    map.addSource("counties", { type: "geojson", data: "data/counties.json" });
+    map.addSource("grey", { type: "raster", tiles: [ESRI + "Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, maxzoom: 16, attribution: "Tiles &copy; Esri, HERE, Garmin, USGS, NGA" });
+    map.addSource("relief", { type: "raster", tiles: [ESRI + "Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}"], tileSize: 256, maxzoom: 15, attribution: "Relief &copy; Esri, USGS, NGA, NASA, CGIAR" });
+    map.addSource("pl", { type: "geojson", data: geo() });
+    map.addLayer({ id: "land", type: "fill", source: "land", paint: { "fill-color": css("--land"), "fill-outline-color": css("--coast") } });
+    map.addLayer({ id: "grey", type: "raster", source: "grey", layout: { visibility: "none" }, paint: { "raster-opacity": .9 } });
+    map.addLayer({ id: "relief", type: "raster", source: "relief", layout: { visibility: "none" }, paint: { "raster-opacity": .45 } });
+    map.addLayer({ id: "coast", type: "line", source: "land", paint: { "line-color": css("--coast"), "line-width": .7 } });
+    map.addLayer({ id: "counties", type: "line", source: "counties", paint: { "line-color": css("--border"), "line-width": ["interpolate", ["linear"], ["zoom"], 4, .3, 8, 1], "line-dasharray": [3, 2] } });
+    map.addLayer({ id: "closedRing", type: "circle", source: "pl", filter: [">=", ["get", "st"], 2], paint: { "circle-radius": radiusExpr(), "circle-color": "rgba(0,0,0,0)", "circle-stroke-color": isDark() ? "#8E8A82" : "#9B958B", "circle-stroke-width": 1.1, "circle-stroke-opacity": .75 } });
+    map.addLayer({ id: "pts", type: "circle", source: "pl", filter: ["==", ["get", "st"], 1], paint: { "circle-radius": radiusExpr(), "circle-color": fateColor(), "circle-opacity": .86,
+      "circle-stroke-color": ["case", ["==", ["get", "sel"], 1], isDark() ? "#fff" : "#000", isDark() ? "#141514" : "#fff"], "circle-stroke-width": ["case", ["==", ["get", "sel"], 1], 2.6, .9] } });
+    applyLayers(); placeNames();
+    ["pts", "closedRing"].forEach(id => {
+      map.on("mouseenter", id, () => map.getCanvas().style.cursor = "pointer");
+      map.on("mouseleave", id, () => { map.getCanvas().style.cursor = ""; hideTip(); });
+      map.on("mousemove", id, e => { const p = P[e.features[0].properties.i]; const r = map.getContainer().getBoundingClientRect(); showTip(`<b>${esc(p.title)}</b><br>${yrs(p)}${p.beds ? " · " + fmt(p.beds) + " beds or patients" : ""}<br>${esc(FL[p.fate])}`, r.left + e.point.x, r.top + e.point.y); });
+      map.on("click", id, e => { pick(e.features[0].properties.i, false); });
+    });
+    map.on("moveend", placeNames);
+  });
+  layerControl();
+}
+function popupHtml(p) {
+  const rows = [["Opened", p.opened || "not stated"], ["Closed", p.closed || (p.open_now ? "still open" : p.status === "closed" ? "year not stated" : "not stated")],
+    ["Beds", p.beds ? fmt(p.beds) + (p.beds_src === "text" ? " (largest the text states)" : "") : "not stated"], ["Now", FL[p.fate]], ["Where", [p.county, p.nation].filter(Boolean).join(", ")]];
+  if (p.listed) rows.push(["Listed", p.listed]);
+  return `<b class="t">${esc(p.title)}</b>${p.names.length ? `<div class="al">Also: ${p.names.map(esc).join("; ")}</div>` : ""}<table>${rows.map(r => `<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join("")}</table><a href="${wiki(p)}" target="_blank" rel="noopener">Wikipedia article</a>`;
+}
+let popup = null;
+function openPopup(p) { if (!mapOK || p.lat == null) return; if (popup) popup.remove(); popup = new maplibregl.Popup({ offset: 10, maxWidth: "300px" }).setLngLat([p.lon, p.lat]).setHTML(popupHtml(p)).addTo(map); }
+function refresh() { if (mapOK) map.getSource("pl").setData(geo()); side(); legend(); if (window.openMark) openMark(); }
+function applyLayers() {
+  if (!mapOK) return;
+  map.setLayoutProperty("counties", "visibility", LY.counties ? "visible" : "none");
+  map.setLayoutProperty("relief", "visibility", LY.relief ? "visible" : "none");
+  map.setPaintProperty("relief", "raster-opacity", Math.min(1, .1 + LY.reliefK / 110));
+  map.setLayoutProperty("grey", "visibility", LY.grey ? "visible" : "none");
+  ["pts", "closedRing"].forEach(id => map.setPaintProperty(id, "circle-radius", radiusExpr()));
+  placeNames();
+}
+let nameMarkers = [];
+function placeNames() {
+  nameMarkers.forEach(m => m.remove()); nameMarkers = [];
+  if (!mapOK || !LY.names) return;
+  const z = map.getZoom(), minPop = z < 5 ? 400000 : z < 6 ? 150000 : z < 7.5 ? 40000 : 0, bxs = [], b = map.getBounds();
+  for (const c of CITIES) {
+    if (c.pop < minPop || !b.contains([c.lon, c.lat])) continue;
+    const pt = map.project([c.lon, c.lat]), big = c.pop >= 500000, w = 10 + c.name.length * (big ? 6.9 : 6.2);
+    const bx = [pt.x - 4, pt.y - 8, pt.x + w, pt.y + 7]; if (bxs.some(o => bx[0] < o[2] && bx[2] > o[0] && bx[1] < o[3] && bx[3] > o[1])) continue; bxs.push(bx);
+    const d = document.createElement("div"); d.className = "cityL" + (big ? "" : " s"); d.innerHTML = `<i></i>${esc(c.name)}`;
+    nameMarkers.push(new maplibregl.Marker({ element: d, anchor: "left", offset: [-3, 0] }).setLngLat([c.lon, c.lat]).addTo(map));
+    if (nameMarkers.length > 45) break;
+  }
+}
+function layerControl() {
+  class Ctl { onAdd() { const d = document.createElement("div"); d.className = "maplibregl-ctrl lyr";
+    d.innerHTML = `<button class="lyrBtn" aria-expanded="false">Map layers</button>
+<div class="lyrPanel" hidden>
+ <div class="row"><label><input type="checkbox" data-k="names"> Place names</label></div>
+ <div class="row"><label><input type="checkbox" data-k="counties"> Counties</label></div>
+ <div class="row"><label><input type="checkbox" data-k="relief"> Relief (hills)</label><div class="sub"><span>strength</span><input type="range" data-k="reliefK" min="10" max="100" step="5" aria-label="Relief strength"></div></div>
+ <div class="row"><label><input type="checkbox" data-k="grey"> Grey street map</label></div>
+ <div class="hd">Asylums</div>
+ <div class="row"><label style="font-weight:400">Circle size</label><div class="sub"><input type="range" data-k="size" min=".5" max="2" step=".1" aria-label="Circle size"></div></div>
+ <p class="sub" style="margin:4px 0 8px">Relief and the grey map are online tiles; without them the plain map still works.</p>
+ <button class="reset">Reset layers</button>
+</div>`;
+    ["click", "dblclick", "mousedown", "touchstart", "wheel"].forEach(t => d.addEventListener(t, e => e.stopPropagation(), { passive: t !== "click" }));
+    const btn = d.querySelector(".lyrBtn"), pan = d.querySelector(".lyrPanel");
+    btn.onclick = () => { const o = pan.hidden; pan.hidden = !o; btn.setAttribute("aria-expanded", o); };
+    const sync = () => pan.querySelectorAll("[data-k]").forEach(i => { const k = i.dataset.k; if (i.type === "checkbox") i.checked = LY[k]; else i.value = LY[k]; });
+    pan.querySelectorAll("[data-k]").forEach(i => i.addEventListener(i.type === "range" ? "input" : "change", () => { const k = i.dataset.k; LY[k] = i.type === "checkbox" ? i.checked : +i.value; if (k === "reliefK") LY.relief = true; sync(); saveLY(); applyLayers(); }));
+    pan.querySelector(".reset").onclick = () => { Object.assign(LY, LYDEF); saveLY(); sync(); applyLayers(); };
+    sync(); return d; } onRemove() {} }
+  map.addControl(new Ctl(), "top-left");
+}
+function retheme() {
+  if (!mapOK) return;
+  map.setPaintProperty("bg", "background-color", css("--sea")); map.setPaintProperty("land", "fill-color", css("--land")); map.setPaintProperty("land", "fill-outline-color", css("--coast"));
+  map.setPaintProperty("coast", "line-color", css("--coast")); map.setPaintProperty("counties", "line-color", css("--border"));
+  map.setPaintProperty("pts", "circle-stroke-color", ["case", ["==", ["get", "sel"], 1], isDark() ? "#fff" : "#000", isDark() ? "#141514" : "#fff"]);
+}
+
+/* ---------- controls ---------- */
+const yr = document.getElementById("yr");
+function setYear(y) { S.y = Math.max(YMIN, Math.min(YMAX, y)); yr.value = S.y; document.getElementById("yv").textContent = S.y; document.getElementById("ylab").textContent = S.mode === "all" ? "everything ever built" : "open in " + S.y; refresh(); }
+yr.addEventListener("input", () => { stop(); if (S.mode === "all") setMode("year"); setYear(+yr.value); });
+function stop() { if (S.play) { clearInterval(S.play); S.play = null; document.getElementById("play").innerHTML = "&#9654;"; } }
+const press = (row, b) => document.querySelectorAll(row + " .btn").forEach(x => x.setAttribute("aria-pressed", x === b));
+function setMode(m) { S.mode = m; press("#modeRow", document.querySelector(`#modeRow [data-m="${m}"]`)); }
+document.querySelectorAll("#modeRow .btn").forEach(b => b.onclick = () => { stop(); setMode(b.dataset.m); setYear(b.dataset.m === "all" ? YMAX : S.y); });
+document.getElementById("play").onclick = () => {
+  if (S.play) return stop();
+  setMode("year"); if (S.y >= YMAX || S.y < 1800) setYear(1800); else setYear(S.y);
+  document.getElementById("play").innerHTML = "&#10074;&#10074;";
+  S.play = setInterval(() => { if (S.y >= YMAX) return stop(); setYear(S.y + 2); }, 110);
+};
+(function fateRow() {
+  const row = document.getElementById("fateRow");
+  const all = document.createElement("button"); all.className = "btn"; all.textContent = "All"; all.setAttribute("aria-pressed", "true"); row.appendChild(all);
+  const bs = FATES.map(([k, n, c], i) => { const b = document.createElement("button"); b.className = "btn"; b.innerHTML = `<i style="background:${c}"></i>${esc(n)}`; b.setAttribute("aria-pressed", "false"); b.dataset.g = i; row.appendChild(b); return b; });
+  const sync = () => { const allOn = S.fates.size === FK.length; all.setAttribute("aria-pressed", allOn); bs.forEach(b => b.setAttribute("aria-pressed", !allOn && S.fates.has(+b.dataset.g))); refresh(); };
+  all.onclick = () => { S.fates = new Set(FK.map((f, i) => i)); sync(); };
+  bs.forEach(b => b.onclick = () => { const g = +b.dataset.g; if (S.fates.size === FK.length) S.fates = new Set([g]); else if (S.fates.has(g)) { S.fates.delete(g); if (!S.fates.size) S.fates = new Set(FK.map((f, i) => i)); } else S.fates.add(g); sync(); });
+  window.setFates = set => { S.fates = set; sync(); };
+})();
+function legend() {
+  const e = document.getElementById("legend");
+  let h = FATES.map(([k, n, c], i) => S.fates.has(i) ? `<span><i style="background:${c}"></i>${esc(n)}</span>` : "").join("");
+  h += `<span>area: largest stated beds or patients; small dots: none stated</span>`;
+  if (S.mode === "year") h += `<span><i class="ring"></i>closed by ${S.y}</span>`;
+  e.innerHTML = h;
+}
+function note(h) { document.getElementById("mapnote").innerHTML = h || ""; }
+function side() {
+  const box = document.getElementById("side"); let h = "";
+  if (S.sel != null) {
+    const p = P[S.sel];
+    h = `<button class="back">Back</button><h4>${p.ld ? "Asylum or hospital for people with learning disabilities" : "Asylum or psychiatric hospital"}</h4><div class="big">${esc(p.title)}</div><p class="sub">${esc([p.county, p.nation].filter(Boolean).join(", "))}${p.lat != null ? ` · ${p.lat.toFixed(3)}°, ${p.lon.toFixed(3)}°` : " · no coordinates"}</p>
+<table><tr><td>Opened</td><td class="num">${p.opened || "not stated"}</td></tr><tr><td>Closed</td><td class="num">${p.closed || (p.open_now ? "still open" : p.status === "closed" ? "year not stated" : "not stated")}</td></tr>
+<tr><td>Beds or patients</td><td class="num">${p.beds ? fmt(p.beds) : "not stated"}</td></tr><tr><td>Now</td><td class="num">${esc(FL[p.fate])}</td></tr>${p.listed ? `<tr><td>Listed</td><td class="num">${esc(p.listed)}</td></tr>` : ""}
+${p.km_town != null ? `<tr><td>To the nearest big town</td><td class="num">${p.km_town} km <small>(${esc(p.town)})</small></td></tr>` : ""}</table>
+${p.names.length ? `<h4>Other names in the article</h4><ul>${p.names.map(n => `<li>${esc(n)}</li>`).join("")}</ul>` : ""}<p><a href="${wiki(p)}" target="_blank" rel="noopener">Read the Wikipedia article</a></p>`;
+    note(`<b>${esc(p.title)}</b>: ${yrs(p)}`);
+  } else {
+    const c = counts();
+    h = `<h4>${S.mode === "all" ? "On the map" : "Open in " + S.y}</h4><div class="big">${fmt(c.open)}</div><p class="sub">${S.mode === "all" ? "asylums and psychiatric hospitals with coordinates, of " + fmt(P.length) + " in the data" : "places open that year" + (c.closed ? `; ${fmt(c.closed)} already closed (rings)` : "")}</p><table>` +
+      FATES.map(([k, n, col], i) => c.byF[i] ? `<tr><td><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${col};margin-right:6px"></i>${esc(n)}</td><td class="num">${fmt(c.byF[i])}</td></tr>` : "").join("") + `</table>`;
+    if (S.mode === "year") {
+      const opened = P.filter(p => p.opened && p.opened <= S.y && p.opened > S.y - 10).sort((a, b) => b.opened - a.opened).slice(0, 6);
+      const closed = P.filter(p => p.closed && p.closed <= S.y && p.closed > S.y - 10).sort((a, b) => b.closed - a.closed).slice(0, 6);
+      if (opened.length) h += `<h4>Opened in the ten years to ${S.y}</h4><ul>${opened.map(p => `<li><span class="go" data-p="${p.i}">${esc(p.title)}</span> <small>${p.opened}</small></li>`).join("")}</ul>`;
+      if (closed.length) h += `<h4>Closed in the ten years to ${S.y}</h4><ul>${closed.map(p => `<li><span class="go" data-p="${p.i}">${esc(p.title)}</span> <small>${p.closed}</small></li>`).join("")}</ul>`;
+    } else {
+      h += `<h4>The biggest</h4><ol>` + R.beds.top.slice(0, 6).map(b => { const p = P.find(q => q.title === b.title); return `<li><span class="go" data-p="${p.i}">${esc(b.title)}</span> <small>${fmt(b.beds)}</small></li>`; }).join("") + `</ol>`;
+    }
+    h += `<p class="sub">Press play to watch them open and close. Click a circle for its names, years and Wikipedia article. Map layers adds place names, counties and relief.</p>`;
+    note(S.mode === "year" ? `<b>${S.y}</b>: ${fmt(c.open)} open` : "");
+  }
+  box.innerHTML = h;
+  const b = box.querySelector(".back"); if (b) b.onclick = () => { S.sel = null; if (popup) popup.remove(); refresh(); };
+  box.querySelectorAll("[data-p]").forEach(e => e.onclick = () => pick(+e.dataset.p, true));
+}
+function toMap() { if (small()) document.getElementById("map").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function pick(i, move) {
+  S.sel = i; const p = P[i];
+  if (S.mode === "year" && stateOf(p) === 0 && p.opened) setYear(p.opened);
+  if (!S.fates.has(p.fate)) window.setFates(new Set(FK.map((f, k) => k)));
+  if (move && mapOK && p.lat != null) { map.flyTo({ center: [p.lon, p.lat], zoom: Math.max(map.getZoom(), 10), duration: 900 }); toMap(); }
+  refresh(); openPopup(p);
+}
+(function focusRow() {
+  const row = document.getElementById("focusRow");
+  const F = [["Britain", null], ["London ring", [[-0.95, 51.1], [0.75, 51.9]]], ["Epsom cluster", [[-0.33, 51.325], [-0.245, 51.365]]], ["Lancashire and Yorkshire", [[-3.3, 53.2], [-0.8, 54.3]]], ["Midlands", [[-2.8, 52.0], [-0.5, 53.1]]], ["South Wales", [[-4.6, 51.35], [-2.6, 51.95]]], ["Central Scotland", [[-4.9, 55.5], [-2.7, 56.6]]], ["Northern Ireland", [[-8.2, 54.0], [-5.4, 55.3]]]];
+  F.forEach(([n, b]) => { const x = document.createElement("button"); x.className = "btn"; x.textContent = n; x.onclick = () => focus(b); row.appendChild(x); });
+  window.focusTo = n => focus(F.find(f => f[0] === n)[1]);
+  function focus(b) { if (!mapOK) return; S.sel = null; if (popup) popup.remove(); if (!b) map.fitBounds(BRITAIN, { padding: 12, duration: 800 }); else map.fitBounds(b, { padding: 30, duration: 800 }); refresh(); toMap(); }
+})();
+document.getElementById("goLondon").onclick = e => { e.preventDefault(); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => window.focusTo("London ring"), 400); };
+document.getElementById("goEpsom").onclick = e => { e.preventDefault(); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => window.focusTo("Epsom cluster"), 400); };
+
+/* ---------- search ---------- */
+(function search() {
+  const inp = document.getElementById("q"), sug = document.getElementById("sug"); let opts = [], k = -1;
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  function build(q) {
+    const nq = norm(q); if (nq.length < 2) return [];
+    const out = [];
+    P.forEach(p => { const t = norm(p.title); if (t.includes(nq)) out.push({ p, n: p.title, s: t.startsWith(nq) ? 9 : 5 });
+      else { const a = p.names.find(n => norm(n).includes(nq)); if (a) out.push({ p, n: p.title, a, s: 3 }); } });
+    return out.sort((a, b) => b.s - a.s).slice(0, 12);
+  }
+  function render() { sug.innerHTML = opts.map((o, i) => `<li role="option" aria-selected="${i === k}" data-i="${i}">${esc(o.n)} <span>${o.a ? "also " + esc(o.a) + " · " : ""}${yrs(o.p)}</span></li>`).join(""); sug.style.display = opts.length ? "block" : "none"; }
+  function go(o) { if (!o) return; sug.style.display = "none"; inp.value = o.n; pick(o.p.i, true); }
+  inp.addEventListener("input", () => { opts = build(inp.value); k = -1; render(); });
+  inp.addEventListener("keydown", e => { if (e.key === "ArrowDown") { k = Math.min(opts.length - 1, k + 1); render(); e.preventDefault(); } else if (e.key === "ArrowUp") { k = Math.max(0, k - 1); render(); e.preventDefault(); } else if (e.key === "Enter") { go(opts[Math.max(0, k)]); } else if (e.key === "Escape") { sug.style.display = "none"; } });
+  sug.addEventListener("click", e => { const li = e.target.closest("li"); if (li) go(opts[+li.dataset.i]); });
+  document.addEventListener("click", e => { if (!e.target.closest(".searchbox")) sug.style.display = "none"; });
+})();
+
+/* ---------- charts ---------- */
+const DEC = R.decades;
+resp(document.getElementById("decChart"), (w, sm) => {
+  const h = sm ? 300 : 340, m = { l: 34, r: 8, t: 14, b: 30 }, iw = w - m.l - m.r, ih = h - m.t - m.b, mx = Math.max(...DEC.map(d => Math.max(d.opened, d.closed)));
+  const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Openings and closures by decade" }, document.getElementById("decChart"));
+  const mid = m.t + ih / 2, sy = v => v / mx * (ih / 2 - 4), bw = iw / DEC.length;
+  [-80, -40, 40, 80].filter(v => Math.abs(v) <= mx).forEach(v => { const y = mid - Math.sign(v) * sy(Math.abs(v)); el("line", { x1: m.l, x2: w - m.r, y1: y, y2: y, stroke: css("--rule") }, svg); lbl(svg, m.l - 4, y + 4, String(Math.abs(v)), "lab s m", "end"); });
+  [-20, 20].filter(v => Math.abs(v) <= mx).forEach(v => { const y = mid - Math.sign(v) * sy(Math.abs(v)); el("line", { x1: m.l, x2: w - m.r, y1: y, y2: y, stroke: css("--rule"), "stroke-dasharray": "2 3" }, svg); lbl(svg, m.l - 4, y + 4, String(Math.abs(v)), "lab s m", "end"); });
+  DEC.forEach((d, i) => {
+    const x = m.l + i * bw + bw * .12, ww = bw * .76;
+    const a = el("rect", { x, y: mid - sy(d.opened), width: ww, height: sy(d.opened), fill: css("--cool") }, svg);
+    const b = el("rect", { x, y: mid, width: ww, height: sy(d.closed), fill: css("--hot") }, svg);
+    const hv = el("rect", { x: m.l + i * bw, y: m.t, width: bw, height: ih, fill: "transparent" }, svg);
+    const t = `<b>${d.dec}s</b><br>${d.opened} opened<br>${d.closed} closed`;
+    hv.addEventListener("mousemove", e => showTip(t, e.clientX, e.clientY)); hv.addEventListener("mouseleave", hideTip); hv.addEventListener("click", e => { e.stopPropagation(); showTip(t, e.clientX, e.clientY); });
+    if (d.dec % (sm ? 40 : 20) === 0) lbl(svg, x + ww / 2, h - 10, String(d.dec), "lab s m", "middle");
+  });
+  el("line", { x1: m.l, x2: w - m.r, y1: mid, y2: mid, stroke: css("--fg") }, svg);
+  const pk = DEC.find(d => d.dec === R.open.peak_dec), pi = DEC.indexOf(pk); lbl(svg, m.l + pi * bw + bw / 2, mid - sy(pk.opened) - 6, `${pk.opened} in the ${pk.dec}s`, "lab s b", "middle");
+  const ck = DEC.find(d => d.dec === R.close.peak_dec), ci = DEC.indexOf(ck); lbl(svg, m.l + ci * bw - 4, mid + sy(ck.closed) - 4, `${ck.closed} in the ${ck.dec}s`, "lab s b", "end");
+  lbl(svg, w - m.r - 2, m.t + 10, "opened ↑", "lab s m", "end"); lbl(svg, w - m.r - 2, h - m.b - 4, "closed ↓", "lab s m", "end");
+});
+const OY = R.open_by_year;
+let openMarkFn = null;
+resp(document.getElementById("openChart"), (w, sm) => {
+  const h = sm ? 230 : 260, m = { l: 36, r: 12, t: 16, b: 28 }, iw = w - m.l - m.r, ih = h - m.t - m.b, mx = 220;
+  const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Number of asylums and psychiatric hospitals open each year" }, document.getElementById("openChart"));
+  const sx = y => m.l + (y - 1800) / (2026 - 1800) * iw, sy = v => m.t + ih - v / mx * ih;
+  [50, 100, 150, 200].forEach(v => { el("line", { x1: m.l, x2: w - m.r, y1: sy(v), y2: sy(v), stroke: css("--rule") }, svg); lbl(svg, m.l - 4, sy(v) + 4, String(v), "lab s m", "end"); });
+  [1808, 1845, 1930, 1961, 1990].forEach(y => { el("line", { x1: sx(y), x2: sx(y), y1: m.t, y2: m.t + ih, stroke: css("--muted"), "stroke-dasharray": "2 3" }, svg); if (!sm || y === 1845 || y === 1961) lbl(svg, sx(y) + 3, m.t + 9, String(y), "lab s m"); });
+  const d = OY.map((o, i) => (i ? "L" : "M") + sx(o.y).toFixed(1) + " " + sy(o.open).toFixed(1)).join(" ");
+  el("path", { d: d + ` L${sx(2026)} ${sy(0)} L${sx(1800)} ${sy(0)} Z`, fill: css("--cool"), opacity: .14 }, svg);
+  el("path", { d, fill: "none", stroke: css("--cool"), "stroke-width": 2.2 }, svg);
+  [1800, 1850, 1900, 1950, 2000].forEach(y => lbl(svg, sx(y), h - 8, String(y), "lab s m", "middle"));
+  const pk = OY.find(o => o.y === R.curve.peak_first); lbl(svg, sx(pk.y), sy(pk.open) + 18, `${pk.open} open at the peak`, "lab s b", "middle");
+  const mk = el("line", { x1: 0, x2: 0, y1: m.t, y2: m.t + ih, stroke: css("--hot"), "stroke-width": 1.5 }, svg), mt = lbl(svg, 0, m.t + ih - 4, "", "lab s b");
+  openMarkFn = () => { const y = S.mode === "all" ? 2026 : S.y, o = OY.find(q => q.y === y); mk.setAttribute("x1", sx(y)); mk.setAttribute("x2", sx(y)); mt.setAttribute("x", sx(y) + (y > 1990 ? -4 : 4)); mt.setAttribute("text-anchor", y > 1990 ? "end" : "start"); mt.textContent = `${y}: ${o.open}`; };
+  openMarkFn();
+  const hv = el("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg);
+  const mv = e => { const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) / r.width * w, y = Math.round(1800 + (x - m.l) / iw * 226), o = OY.find(q => q.y === Math.max(1800, Math.min(2026, y))); showTip(`<b>${o.y}</b><br>${o.open} open${o.opened ? `, ${o.opened} opened` : ""}${o.closed ? `, ${o.closed} closed` : ""}`, e.clientX, e.clientY); };
+  hv.addEventListener("mousemove", mv); hv.addEventListener("mouseleave", hideTip); hv.addEventListener("click", e => { e.stopPropagation(); mv(e); });
+});
+window.openMark = () => openMarkFn && openMarkFn();
+function hbars(box, rows, opt) {
+  resp(box, (w, sm) => {
+    const lw = Math.min(sm ? 150 : 240, w * .42), rh = opt.rh || 24, h = rows.length * rh + 8, mx = opt.max || Math.max(...rows.map(r => r.v));
+    const svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": opt.aria }, box);
+    rows.forEach((r, i) => {
+      const y = 4 + i * rh, bw = (w - lw - 70) * r.v / mx;
+      const t = lbl(svg, lw - 8, y + rh / 2 + 4, sm && r.n.length > 22 ? r.n.slice(0, 21) + "…" : r.n, "lab", "end");
+      const bar = el("rect", { x: lw, y: y + 3, width: Math.max(1, bw), height: rh - 7, fill: r.c || css("--cool") }, svg);
+      lbl(svg, lw + bw + 6, y + rh / 2 + 4, r.lab ?? String(r.v), "lab s");
+      const g = el("rect", { x: 0, y, width: w, height: rh, fill: "transparent", style: opt.click ? "cursor:pointer" : "" }, svg);
+      g.addEventListener("mousemove", e => showTip(r.tip || `<b>${esc(r.n)}</b><br>${r.lab ?? r.v}`, e.clientX, e.clientY)); g.addEventListener("mouseleave", hideTip);
+      g.addEventListener("click", e => { e.stopPropagation(); if (opt.click) { hideTip(); opt.click(r); } else showTip(r.tip || `<b>${esc(r.n)}</b><br>${r.lab ?? r.v}`, e.clientX, e.clientY); });
+    });
+  });
+}
+hbars(document.getElementById("bigChart"), R.beds.top.slice(0, 12).map(b => ({ n: b.title.replace(" Hospital", "").replace(", Epsom", " (Epsom)"), v: b.beds, lab: fmt(b.beds), c: css("--ink"), t: b.title,
+  tip: `<b>${esc(b.title)}</b><br>${fmt(b.beds)} ${b.src === "infobox" ? "(infobox)" : "(text: …" + esc(b.phrase.slice(-70)) + ")"}` })), { aria: "The biggest asylums by stated beds", click: r => { const p = P.find(q => q.title === r.t); document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => pick(p.i, true), 400); } });
+hbars(document.getElementById("fateChart"), FATES.map(([k, n, c], i) => ({ n, v: R.fates[k], lab: `${R.fates[k]} (${Math.round(100 * R.fates[k] / R.source.kept)}%)`, c, i })), { aria: "What the sites are now", click: r => { window.setFates(new Set([r.i])); if (S.mode !== "all") { setMode("all"); setYear(S.y); } document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); } });
+const NM = R.names;
+hbars(document.getElementById("nameChart"), [["any name with \"asylum\"", NM.asylum_any], ["\"lunatic asylum\" or similar", NM.lunatic_asylum], ["\"mental hospital\"", NM.mental_hospital], ["institution or colony", NM.institution], ["\"psychiatric hospital\"", NM.psychiatric_hospital], ["today's title starts with \"St\"", NM.saint_titles]].map(([n, v], i) => ({ n, v, lab: `${v} (${Math.round(100 * v / R.source.kept)}%)`, c: i < 2 ? css("--hot") : i < 4 ? css("--gold") : css("--cool") })), { aria: "Names recorded in the articles" });
+(function townChart() {
+  const T = R.town, rows = [["before 1845", T.pre1845], ["1845 to 1914", T.y1845_1914], ["1915 to 1947", T.y1915_1947], ["1948 onwards", T.y1948_]];
+  resp(document.getElementById("townChart"), (w, sm) => {
+    const lw = sm ? 100 : 130, rh = 30, h = rows.length * rh * 2 + 20, svg = el("svg", { viewBox: `0 0 ${w} ${h}`, role: "img", "aria-label": "Distance to the nearest big town" }, document.getElementById("townChart"));
+    rows.forEach(([n, t], i) => { const y = 4 + i * rh * 2; lbl(svg, lw - 8, y + rh - 2, n, "lab b", "end"); lbl(svg, lw - 8, y + rh + 12, `${t.n} places`, "lab s m", "end");
+      [[t.over5_pct, "more than 5 km", css("--cool")], [t.over15_pct, "more than 15 km", css("--ink")]].forEach(([v, lab, c], k) => { const bw = (w - lw - 140) * v / 100, yy = y + 4 + k * (rh - 4);
+        el("rect", { x: lw, y: yy, width: bw, height: rh - 10, fill: c, opacity: k ? .75 : 1 }, svg); lbl(svg, lw + bw + 6, yy + rh / 2 - 1, `${Math.round(v)}% ${lab}`, "lab s");
+        const g = el("rect", { x: 0, y: yy, width: w, height: rh - 6, fill: "transparent" }, svg); const tp = `<b>Opened ${n}</b><br>${Math.round(v)}% ${lab}<br>median ${t.median} km`;
+        g.addEventListener("mousemove", e => showTip(tp, e.clientX, e.clientY)); g.addEventListener("mouseleave", hideTip); g.addEventListener("click", e => { e.stopPropagation(); showTip(tp, e.clientX, e.clientY); }); }); });
+  });
+})();
+(function allTable() {
+  const t = document.getElementById("allTable");
+  const rows = P.slice().sort((a, b) => a.title.localeCompare(b.title));
+  t.innerHTML = `<thead><tr><th>Place</th><th class="r">Opened</th><th class="r">Closed</th><th class="r">Beds</th><th>Now</th></tr></thead><tbody>` + rows.map(p => `<tr data-i="${p.i}"><td>${esc(p.title)}<br><small style="color:var(--muted)">${esc(p.county || "no coordinates")}</small></td><td class="r">${p.opened || ""}</td><td class="r">${p.closed || (p.open_now ? "open" : "")}</td><td class="r">${p.beds ? fmt(p.beds) : ""}</td><td><i style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${FCOL[p.fate]};margin-right:5px"></i>${esc(FL[p.fate])}</td></tr>`).join("") + "</tbody>";
+  t.querySelectorAll("tr[data-i]").forEach(r => r.onclick = () => { const p = P[+r.dataset.i]; if (p.lat == null) return; document.getElementById("atlas").scrollIntoView({ behavior: "smooth" }); setTimeout(() => pick(p.i, true), 400); });
+})();
+
+/* ---------- theme ---------- */
+document.getElementById("theme").onclick = () => { const r = document.documentElement; r.dataset.theme = isDark() ? "light" : "dark"; try { localStorage.setItem("as_theme", r.dataset.theme); } catch (e) {} redraws.forEach(f => f()); retheme(); };
+try { const t = localStorage.getItem("as_theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+initMap(); setYear(YMAX); legend();
+</script>
+/*FULLSCREEN*/
+</body>
+</html>

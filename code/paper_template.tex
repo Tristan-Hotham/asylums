@@ -1,0 +1,152 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
+\newfontfamily\headfont{Inter}[UprightFont=*-ExtraBold,BoldFont=*-ExtraBold,Extension=.otf,Path=/usr/share/fonts/opentype/inter/]
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{graphicx,booktabs,float,caption,array,xcolor,longtable}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\setstretch{1.05}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\titleformat{\section}{\headfont\Large}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\headfont\large}{\thesubsection}{0.8em}{}
+\captionsetup{font=small,labelfont=bf}
+\urlstyle{same}
+\hypersetup{pdftitle={Where the Asylums Were},pdfauthor={Tristan Hotham}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries Where the Asylums Were\par}
+\vspace{0.4em}
+{\large Britain's county asylums and psychiatric hospitals, from the 1808 Act to Care in the Community:\\{{source.kept|int}} places in English Wikipedia\par}
+\vspace{1.2em}
+{\large Tristan Hotham\par}
+\vspace{0.3em}
+{\small Independent researcher\\
+ORCID: 0000-0003-4931-9349\\
+DOI: \href{https://doi.org/{{meta.doi}}}{https://doi.org/{{meta.doi}}}\par}
+\vspace{0.8em}
+2026
+\end{center}
+
+\begin{quote}
+\small
+\begin{center}\textbf{Abstract}\end{center}
+I build an open dataset of Britain's lunatic asylums and later psychiatric hospitals from English Wikipedia and use it to describe when they opened, how large they became, when they closed and what their sites are now. Of {{source.pages|int}} articles found by walking Wikipedia's psychiatric and defunct hospital categories, {{source.kept|int}} describe a single asylum, psychiatric hospital or institution for people with learning disabilities; {{source.located|int}} can be located. Openings came in two waves, peaking in the {{open.peak_dec|raw}}s ({{open.peak_n|int}}) after the Lunacy and County Asylums Acts of 1845 and again in the 1900s ({{open.dec1900s|int}}); {{open.y1845_1914_pct|int}}\% of places with an opening year opened between 1845 and 1914. The number open rose to {{curve.peak_n|int}} and stayed close to that level from the 1950s to the early 1980s. Closures were concentrated after Enoch Powell's Water Tower speech of 1961, but late: {{close.y1980_1999_pct|int}}\% of the {{close.n|int}} dated closures fell between 1980 and 1999, {{close.dec1990s|int}} in the 1990s alone. The median Victorian asylum lasted {{gap.vic_median_life|int}} years. The largest stated size is Whittingham's {{beds.top.0.beds|int}} patients in 1939. London's asylums formed a ring: {{london.ring_vic|int}} opened between 1830 and 1939 lie 10 to 40 km from Charing Cross against {{london.inner_vic|int}} within 10 km, including the five hospitals of the Epsom cluster, all within {{epsom.max_km|f1}} km of each other. Of {{fates_closed.n|int}} places no longer open, {{fates_closed_pct.homes|int}}\% are now homes, {{fates_closed_pct.other|int}}\% have another use and {{fates_closed_pct.demolished|int}}\% are recorded as demolished; for {{fates_closed_pct.unknown|int}}\% the articles do not say. {{listed.pct|int}}\% of the articles report a listed building. The dataset is uneven and incomplete, and I document its selection rules and limits.
+
+\textbf{Keywords:} asylums; psychiatric hospitals; history of psychiatry; deinstitutionalisation; Care in the Community; Lunacy Act 1845; historic buildings; Wikipedia; open data; mapping
+\end{quote}
+
+\section{Introduction}
+For most of the nineteenth and twentieth centuries the main public provision in Britain for people with a mental illness or a learning disability was the asylum: a large institution, usually built by a county or borough, standing in its own grounds outside a town. The County Asylums Act 1808 allowed counties in England and Wales to build them; the Lunacy Act and County Asylums Act of 1845 made the network general and set up the Lunacy Commission \citep{wiki1808,wiki1845}. The Mental Treatment Act 1930 renamed them mental hospitals \citep{wiki1930}; the Mental Health Act 1959 aimed to move care into the community \citep{wiki1959}; and in 1961 the Minister of Health, Enoch Powell, described them as ``isolated, majestic, imperious'' and predicted their end \citep{wikipowell}. The National Health Service and Community Care Act 1990 completed the policy known as Care in the Community \citep{wikicc}.
+
+There is a large literature on this history, and enthusiasts have documented many individual sites. This paper asks what an open, reproducible source can show at the scale of the whole system. English Wikipedia has articles on several hundred British hospitals with infoboxes giving opening and closing years, coordinates and sometimes bed numbers, and leads that often say what became of the site. I turn these into a dataset, map it (\url{{{meta.page}}}), and report the rise and fall of the asylum in numbers, with the limits that such a source imposes. The study is a companion to an earlier one on the traces of the workhouse.
+
+A note on language: I use the historical names of institutions (``lunatic asylum'', ``mental deficiency colony'') because they are part of the record; they are not terms for people.
+
+\section{Data}
+\textbf{Articles.} The articles were found by walking {{source.n_cats|int}} Wikipedia categories under Psychiatric hospitals in the United Kingdom, Former psychiatric hospitals in the United Kingdom and Defunct hospitals in England, Scotland and Wales, three levels deep, in 2026. For each of the {{source.pages|int}} articles I have its revision id, categories, Wikidata id, the API's coordinates where the API returned them ({{source.api_coords_pages|int}} articles) and the first 6,000 characters of its wikitext, which usually covers the infobox and the lead. Context articles on the Acts, on Powell, on Care in the Community and on several asylums supply the history quoted in the text \citep{wiki1774,wiki1808,wiki1845,wiki1930,wiki1959,wikipowell,wikicc,wikiepsom,wikiwhit,wikicolney,wikibethlem,wikila}.
+
+\textbf{Wikidata.} I was also given a Wikidata extract of UK items that are instances of subclasses of item Q1774898. That item is the class for clinics, not psychiatric hospitals, and none of the extract's {{source.wd_items|int}} items matches an article in the Wikipedia set ({{source.wd_health_centres|int}} are community health centres; most others are clinics and dental practices). I report this and do not use it.
+
+\textbf{Geography.} Coastlines and towns are from Natural Earth \citep{naturalearth}; county outlines from the ONS and OSNI.
+
+\section{Methods}
+\subsection{Which articles count}
+An article is kept if it describes a single place and (A) the first two sentences of its lead call it a psychiatric or mental hospital, an asylum, a lunatic asylum or an institution for people with learning disabilities, using any of the words psychiatric, asylum, lunatic, mental, insane, madhouse, idiot, imbecile, feeble-minded, learning or intellectual disability, epileptic or psychogeriatric (``Metropolitan Asylums Board'', ``sick asylum'', ``orphan asylum'' and ``asylum seeker'' excluded); or (B) its infobox type or speciality uses one of these words and does not say general, teaching or district; or (C) Wikipedia files it in a psychiatric hospital category and one of the words appears in its text. {{source.rule_A|int}} articles pass test A, and {{source.rule_all|int}} pass all three. Articles about people, NHS trusts, tribunals, charities, units ``based at'' another hospital, the Epsom Cluster as a group and a drug and alcohol rehabilitation centre are dropped, as is one general hospital checked by hand; one pair of articles describing the same site is merged. Table~\ref{tab:select} gives the counts.
+
+{{TABLE_SELECT}}
+
+\subsection{Fields}
+Coordinates come from the coord template in the wikitext ({{source.coord_wikitext|int}}) or the API ({{source.coord_api|int}}). The opening year is the first year in the infobox field founded, opened or constructed; failing that, a year attached to ``opened'', ``established'' or ``founded'' in the lead, then to ``the hospital opened'' in the text, then a ``NNNN establishments'' category. The closing year comes the same way from the closed field, the lead, ``the hospital closed'' in the text, and ``Hospitals disestablished in NNNN''. A lead in the present tense (``is a psychiatric hospital'') with no closing year marks a place as still open, and outranks a closing year found only in the text. Size is the infobox beds figure or, if larger, the largest number of beds, patients, inmates or residents the text states after a word of capacity (accommodate, house, hold, designed for, had, peak); counts of deaths, transfers or admissions are excluded. These are capacities at different dates, not a common measure. Opening and closing years are given for {{open.n|int}} and {{close.n|int}} places.
+
+\subsection{What the site is now}
+The fate of each site is read from keywords in its lead or, if the lead says nothing, in the rest of the opening text. Homes: flats, apartments, housing, residential use or development, with a verb of conversion or redevelopment in the same clause, and not plans or proposals. Other use: a college, university, campus, offices, hotel, prison, museum and so on. Demolished: demolished, razed, pulled down, with no new use stated. Derelict: derelict, disused, in ruins, left empty. Still a hospital: open, as above. The order of precedence is still a hospital, homes, other, derelict, demolished, so a cleared site rebuilt as housing counts as homes. Listed status is read from phrases such as ``Grade II listed'' or ``Category B listed'' and from listed building categories.
+
+\subsection{Geography}
+Each located place is assigned to a county by point in polygon. Distance to the nearest town is the great circle distance to the nearest of {{town.n_big|int}} Natural Earth places in the UK, Ireland and the Isle of Man with a present-day population of at least 100,000. The London ring is the band 10 to 40 km from Charing Cross.
+
+\section{Results}
+\subsection{Coverage}
+The {{source.kept|int}} places are {{nations.England|int}} located in England, {{nations.Scotland|int}} in Scotland, {{nations.Wales|int}} in Wales, {{nations.Northern Ireland|int}} in Northern Ireland and {{nations.Isle of Man|int}} on the Isle of Man, with {{source.not_located|int}} unlocated (Figure~\ref{fig:map}). They include {{kinds.ld|int}} institutions for people with learning disabilities, {{kinds.secure|int}} secure hospitals and a number of modern mental health units, some on the sites of old asylums.
+
+\begin{figure}[tbp]\centering\includegraphics[width=.92\textwidth]{f_map.png}
+\caption{Asylums and psychiatric hospitals in the data, coloured by what the site is now and sized by the largest stated beds or patients.}\label{fig:map}\end{figure}
+
+\subsection{Two waves of building}
+Nine places opened before 1800, from Bethlem (founded 1247) to the charitable and private asylums of the eighteenth century. Under the permissive Act of 1808, {{open.y1808_1844|int}} opened between 1808 and 1844. After 1845 the pace rose to a peak of {{open.peak_n|int}} openings in the {{open.peak_dec|raw}}s and {{open.dec1870s|int}} in the 1870s, fell to {{open.dec1880s|int}} in the 1880s and rose again to {{open.dec1890s|int}} in the 1890s and {{open.dec1900s|int}} in the 1900s (Figure~\ref{fig:dec}). After 1914 few new asylums opened: {{open.y1915_1947|int}} between 1915 and 1947, {{open.y1948_1989|int}} between 1948 and 1989 and {{open.y1990_|int}} since 1990, the last mostly small units. The median opening year is {{open.median|raw}}.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_decades.png}
+\caption{Openings (up) and closures (down) by decade.}\label{fig:dec}\end{figure}
+
+\subsection{A long plateau and a late fall}
+The number open (Figure~\ref{fig:open}) rose from {{curve.y1845|int}} in 1845 to {{curve.y1900|int}} in 1900 and {{curve.y1914|int}} in 1914, and reached {{curve.peak_n|int}}, a level held from {{curve.peak_first|raw}} to {{curve.peak_last|raw}}. Of the {{close.n|int}} closures with a year, {{close.before1961|int}} came before 1961 and {{close.y1961_1979|int}} between 1961 and 1979; {{close.dec1980s|int}} came in the 1980s, {{close.dec1990s|int}} in the 1990s, {{close.dec2000s|int}} in the 2000s and {{close.dec2010s|int}} in the 2010s. Of the {{since1961.open_1961|int}} places open in 1961, {{since1961.closed_since|int}} ({{since1961.closed_since_pct|int}}\%) have closed, with a median closing year of {{since1961.median_close|raw}}. The policy announced in 1961 therefore took effect mostly two to four decades later. For the {{gap.vic_n|int}} asylums opened between 1808 and 1914 with both years, the median life was {{gap.vic_median_life|int}} years and {{gap.vic_over100_pct|int}}\% lasted a century or more.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_open.png}
+\caption{Places open in each year, of the {{curve.n|int}} with an opening year and either a closing year or no recorded closure.}\label{fig:open}\end{figure}
+
+\subsection{Size}
+{{beds.n|int}} places state a size ({{beds.infobox|int}} from the infobox, {{beds.text|int}} from the text). {{beds.over1000|int}} held 1,000 or more at some date and {{beds.over2000|int}} 2,000 or more (Table~\ref{tab:big}, Figure~\ref{fig:big}). Whittingham in Lancashire, with {{beds.top.0.beds|int}} patients in 1939, is described in its article as the largest mental hospital in Great Britain \citep{wikiwhit}. The median stated size of asylums opened 1808 to 1914 is {{beds.vic_median|int}}, against {{beds.modern_median|int}} for units opened since 1990.
+
+{{TABLE_BIG}}
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_biggest.png}
+\caption{The twelve largest stated sizes.}\label{fig:big}\end{figure}
+
+\subsection{Clusters and distance}
+London placed its asylums in a ring outside the built-up area (Figure~\ref{fig:london}): of places opened 1830 to 1939, {{london.inner_vic|int}} lie within 10 km of Charing Cross and {{london.ring_vic|int}} between 10 and 40 km, a median {{london.ring_median_km|f1}} km out, {{london.ring_outside_gl|int}} of them beyond today's Greater London boundary. The five Epsom hospitals, built by the London County Council on the Horton estate \citep{wikiepsom}, opened between {{epsom.opened_min|raw}} and {{epsom.opened_max|raw}} within {{epsom.max_km|f1}} km of each other; four state sizes totalling {{epsom.beds_sum|int}}. Across Britain, {{town.y1845_1914.over5_pct|int}}\% of asylums opened 1845 to 1914 are more than 5 km from the nearest town of 100,000 or more today (median {{town.y1845_1914.median|f1}} km), against {{town.y1948_.over5_pct|int}}\% of places opened since 1948 (Figure~\ref{fig:town}); present-day populations make this a rough measure.
+
+\begin{figure}[tbp]\centering\includegraphics[width=.92\textwidth]{f_london.png}
+\caption{The London ring: places within 40 km of Charing Cross, with the Epsom cluster.}\label{fig:london}\end{figure}
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_town.png}
+\caption{Share of places more than 5 and 15 km from the nearest town of 100,000 or more today, by period of opening.}\label{fig:town}\end{figure}
+
+\subsection{What the sites are now}
+Of the {{fates_closed.n|int}} places no longer open, {{fates_closed.homes|int}} ({{fates_closed_pct.homes|int}}\%) are now homes, {{fates_closed.other|int}} ({{fates_closed_pct.other|int}}\%) have another use, {{fates_closed.demolished|int}} ({{fates_closed_pct.demolished|int}}\%) are recorded as demolished with no new use stated and {{fates_closed.derelict|int}} as derelict; {{fates_closed.unknown|int}} ({{fates_closed_pct.unknown|int}}\%) are not stated (Figure~\ref{fig:fates}). Among closed sites with a stated fate, {{fates_closed.homes_of_known_pct|int}}\% are homes. {{fates_detail.homes_with_demolition|int}} of the housing sites also mention demolition. The fate was found in the lead for {{fates_detail.src_lead|int}} places and in the rest of the text for {{fates_detail.src_text|int}}. {{listed.n|int}} articles ({{listed.pct|int}}\%) report a listed building, {{listed.vic_pct|int}}\% of asylums opened 1808 to 1914 and {{listed.modern_n|int}} of {{listed.modern_of|int}} places opened since 1948; three are Grade I.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_fates.png}
+\caption{What the closed sites are now, as their articles state.}\label{fig:fates}\end{figure}
+
+\subsection{Names}
+{{names.asylum_any|int}} articles ({{names.asylum_any_pct|int}}\%) record a name with ``asylum'', {{names.mental_hospital|int}} a ``mental hospital'' name and {{names.asylum_then_mh|int}} both (Figure~\ref{fig:names}). Where a single year is given for a ``mental hospital'' name ({{names.mh_years_n|int}} places), {{names.mh_years_1920_1939|int}} fall in 1920 to 1939, the period of the Mental Treatment Act 1930. {{names.saint_titles|int}} current titles begin with ``St''.
+
+\begin{figure}[tbp]\centering\includegraphics[width=\textwidth]{f_names.png}
+\caption{Names recorded in the articles.}\label{fig:names}\end{figure}
+
+\section{Limitations}
+First, the data cover only places with a Wikipedia article in the categories walked; many asylums are missing, and Wales and Northern Ireland are thin. Second, the selection rules are keyword rules and include modern units and some private houses alongside the county asylums. Third, only the first 6,000 characters of each article were read, so later history, including fates, is often cut off. Fourth, years, sizes and fates are what the articles say, and the articles differ in what they count as opening, closing or capacity. Fifth, the fate rules can misread a sentence; every assignment is published with the phrase that triggered it so that it can be checked. Sixth, distances use present-day town populations.
+
+\section{Conclusion}
+Wikipedia, read with simple and published rules, recovers the shape of the asylum era in Britain: two waves of building after 1845 and around 1900, a long plateau through the middle of the twentieth century, and a concentrated closure in the 1980s and 1990s, a generation after Powell's speech. The buildings did not vanish. Most of the closed sites whose fate is recorded are now homes, often in the old wards, and a third of the articles report listed buildings. The asylums' successors are smaller and often on the same ground.
+
+\section*{Data and code availability}
+The interactive map is at \url{{{meta.page}}}. Data and code are at \url{{{meta.repo}}} and archived with this paper at \url{https://doi.org/{{meta.doi}}}. Code is released under the MIT licence, text and figures under CC BY 4.0, and the table derived from Wikipedia (data/asylums.csv) under CC BY-SA 4.0.
+
+\section*{AI statement}
+I wrote the text, with drafting and editing assistance from Claude (Anthropic), which also helped prepare the analysis code. I reviewed and checked all text and results.
+
+\begin{thebibliography}{20}
+\bibitem[Natural Earth(2026)]{naturalearth} Natural Earth (2026) Admin 0 countries and populated places, 1:10m. Public domain. \url{https://www.naturalearthdata.com/}
+\bibitem[Wikipedia(2026a)]{wiki1774} Wikipedia contributors (2026) Madhouses Act 1774 (revision {{wiki.revids.Madhouses_Act_1774|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026b)]{wiki1808} Wikipedia contributors (2026) County Asylums Act 1808 (revision {{wiki.revids.County_Asylums_Act_1808|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026c)]{wiki1845} Wikipedia contributors (2026) Lunacy Act 1845 (revision {{wiki.revids.Lunacy_Act_1845|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026d)]{wiki1930} Wikipedia contributors (2026) Mental Treatment Act 1930 (revision {{wiki.revids.Mental_Treatment_Act_1930|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026e)]{wiki1959} Wikipedia contributors (2026) Mental Health Act 1959 (revision {{wiki.revids.Mental_Health_Act_1959|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026f)]{wikipowell} Wikipedia contributors (2026) Enoch Powell (revision {{wiki.revids.Enoch_Powell#Water_Tower_speech|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026g)]{wikicc} Wikipedia contributors (2026) Care in the Community (revision {{wiki.revids.Care_in_the_Community|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026h)]{wikiepsom} Wikipedia contributors (2026) Epsom Cluster (revision {{wiki.revids.Epsom_Cluster|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026i)]{wikiwhit} Wikipedia contributors (2026) Whittingham Hospital (revision {{wiki.revids.Whittingham_Hospital|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026j)]{wikicolney} Wikipedia contributors (2026) Colney Hatch Lunatic Asylum (revision {{wiki.revids.Colney_Hatch_Lunatic_Asylum|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026k)]{wikibethlem} Wikipedia contributors (2026) Bethlem Royal Hospital (revision {{wiki.revids.Bethlem_Royal_Hospital|raw}}). CC BY-SA 4.0.
+\bibitem[Wikipedia(2026l)]{wikila} Wikipedia contributors (2026) Lunatic asylum (revision {{wiki.revids.Lunatic_asylum|raw}}). CC BY-SA 4.0.
+\end{thebibliography}
+\end{document}

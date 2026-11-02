@@ -1,0 +1,2234 @@
+{
+ "source": {
+  "pages": 659,
+  "n_cats": 22,
+  "kept": 244,
+  "dropped": 415,
+  "drop_reasons": {
+   "an organisation, unit or group article, not a single place": 7,
+   "a general or other hospital (no psychiatric signal in category, infobox or lead)": 354,
+   "a general hospital whose site once had a lunatic ward (checked by hand)": 1,
+   "a person or other non-place article": 7,
+   "not a hospital article": 45,
+   "same site as Glenside, Bristol (merged)": 1
+  },
+  "located": 233,
+  "located_pct": 95.5,
+  "coord_wikitext": 231,
+  "coord_api": 2,
+  "not_located": 11,
+  "api_coords_pages": 138,
+  "rule_A": 225,
+  "rule_only_B": 3,
+  "rule_only_C": 7,
+  "rule_all": 190,
+  "retrieved": "2026",
+  "wd_items": 213,
+  "wd_matched": 0,
+  "wd_enwiki": 13,
+  "wd_types_top": [
+   [
+    "community health center",
+    157
+   ],
+   [
+    "clinic",
+    38
+   ],
+   [
+    "dental clinic",
+    12
+   ],
+   [
+    "house",
+    6
+   ]
+  ],
+  "wd_health_centres": 157,
+  "wd_clinic_like": 54,
+  "drop_general": 355,
+  "drop_nothospital": 45,
+  "drop_org": 14,
+  "drop_merged": 1
+ },
+ "nations": {
+  "England": 171,
+  "Scotland": 42,
+  "Wales": 14,
+  "Northern Ireland": 5,
+  "Isle of Man": 1
+ },
+ "counties_top": [
+  [
+   "Greater London",
+   20
+  ],
+  [
+   "Surrey",
+   12
+  ],
+  [
+   "Bristol",
+   8
+  ],
+  [
+   "West Yorkshire",
+   7
+  ],
+  [
+   "North Yorkshire",
+   6
+  ],
+  [
+   "Lancashire",
+   6
+  ],
+  [
+   "Kent",
+   6
+  ],
+  [
+   "Nottinghamshire",
+   5
+  ],
+  [
+   "Essex",
+   5
+  ],
+  [
+   "Norfolk",
+   5
+  ],
+  [
+   "Hampshire",
+   5
+  ],
+  [
+   "Hertfordshire",
+   5
+  ]
+ ],
+ "n_counties": 79,
+ "kinds": {
+  "ld": 14,
+  "secure": 9,
+  "private": 8,
+  "open_now": 71,
+  "closed": 164,
+  "status_unknown": 9,
+  "closed_with_year": 155,
+  "closed_no_year": 10
+ },
+ "decades": [
+  {
+   "dec": 1800,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "dec": 1810,
+   "opened": 11,
+   "closed": 0
+  },
+  {
+   "dec": 1820,
+   "opened": 8,
+   "closed": 0
+  },
+  {
+   "dec": 1830,
+   "opened": 9,
+   "closed": 0
+  },
+  {
+   "dec": 1840,
+   "opened": 12,
+   "closed": 0
+  },
+  {
+   "dec": 1850,
+   "opened": 17,
+   "closed": 0
+  },
+  {
+   "dec": 1860,
+   "opened": 30,
+   "closed": 1
+  },
+  {
+   "dec": 1870,
+   "opened": 24,
+   "closed": 0
+  },
+  {
+   "dec": 1880,
+   "opened": 10,
+   "closed": 0
+  },
+  {
+   "dec": 1890,
+   "opened": 19,
+   "closed": 1
+  },
+  {
+   "dec": 1900,
+   "opened": 26,
+   "closed": 1
+  },
+  {
+   "dec": 1910,
+   "opened": 10,
+   "closed": 1
+  },
+  {
+   "dec": 1920,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "dec": 1930,
+   "opened": 14,
+   "closed": 0
+  },
+  {
+   "dec": 1940,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "dec": 1950,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "dec": 1960,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "dec": 1970,
+   "opened": 2,
+   "closed": 1
+  },
+  {
+   "dec": 1980,
+   "opened": 4,
+   "closed": 17
+  },
+  {
+   "dec": 1990,
+   "opened": 3,
+   "closed": 83
+  },
+  {
+   "dec": 2000,
+   "opened": 8,
+   "closed": 31
+  },
+  {
+   "dec": 2010,
+   "opened": 4,
+   "closed": 16
+  },
+  {
+   "dec": 2020,
+   "opened": 0,
+   "closed": 1
+  }
+ ],
+ "open": {
+  "n": 230,
+  "pct": 94.3,
+  "before1800": 9,
+  "first_year": 1247,
+  "first_title": "Bethlem Royal Hospital",
+  "peak_dec": 1860,
+  "peak_n": 30,
+  "y1808_1844": 31,
+  "y1845_1889": 91,
+  "y1890_1914": 51,
+  "y1915_1947": 22,
+  "y1948_1989": 9,
+  "y1990_": 15,
+  "y1845_1914": 142,
+  "y1800_1844": 33,
+  "dec1840s": 12,
+  "dec1850s": 17,
+  "dec1860s": 30,
+  "dec1890s": 19,
+  "dec1900s": 26,
+  "dec1830s": 9,
+  "dec1810s": 11,
+  "dec1820s": 8,
+  "dec1870s": 24,
+  "dec1880s": 10,
+  "dec1910s": 10,
+  "dec1920s": 4,
+  "dec1930s": 14,
+  "median": 1874,
+  "y1845_1914_pct": 61.7,
+  "post1845_peak_dec": 1860,
+  "c1900_peak_dec": 1900,
+  "trough_dec": 1880
+ },
+ "close": {
+  "n": 155,
+  "pct_of_closed": 94.5,
+  "peak_dec": 1990,
+  "peak_n": 83,
+  "dec1960s": 1,
+  "dec1970s": 1,
+  "dec1980s": 17,
+  "dec1990s": 83,
+  "dec2000s": 31,
+  "dec2010s": 16,
+  "dec2020s": 1,
+  "y1980_1999": 100,
+  "before1961": 5,
+  "y1961_1979": 2,
+  "since2000": 48,
+  "median": 1996,
+  "first": 1860,
+  "last": 2020,
+  "y1980_1999_pct": 64.5,
+  "since1961": 150,
+  "since1961_pct": 96.8,
+  "y1990s_pct": 53.5
+ },
+ "gap": {
+  "n": 153,
+  "median_life": 121,
+  "vic_n": 131,
+  "vic_median_life": 126,
+  "vic_over100": 102,
+  "vic_over100_pct": 77.9,
+  "peak_to_peak": 90,
+  "median_open_closed": 1873,
+  "median_close_closed": 1996,
+  "longest": [
+   [
+    "Bethel Hospital, Norwich",
+    1713,
+    1995,
+    282
+   ],
+   [
+    "St Luke's Hospital for Lunatics",
+    1751,
+    2011,
+    260
+   ],
+   [
+    "Bootham Park Hospital",
+    1777,
+    2015,
+    238
+   ],
+   [
+    "Sunnyside Royal Hospital",
+    1781,
+    2011,
+    230
+   ],
+   [
+    "The Retreat",
+    1796,
+    2018,
+    222
+   ]
+  ]
+ },
+ "open_by_year": [
+  {
+   "y": 1800,
+   "open": 9,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1801,
+   "open": 9,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1802,
+   "open": 9,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1803,
+   "open": 9,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1804,
+   "open": 9,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1805,
+   "open": 9,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1806,
+   "open": 10,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1807,
+   "open": 10,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1808,
+   "open": 10,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1809,
+   "open": 11,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1810,
+   "open": 11,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1811,
+   "open": 11,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1812,
+   "open": 13,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1813,
+   "open": 14,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1814,
+   "open": 16,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1815,
+   "open": 16,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1816,
+   "open": 17,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1817,
+   "open": 19,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1818,
+   "open": 22,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1819,
+   "open": 22,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1820,
+   "open": 23,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1821,
+   "open": 23,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1822,
+   "open": 23,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1823,
+   "open": 25,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1824,
+   "open": 25,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1825,
+   "open": 26,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1826,
+   "open": 27,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1827,
+   "open": 28,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1828,
+   "open": 30,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1829,
+   "open": 30,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1830,
+   "open": 30,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1831,
+   "open": 30,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1832,
+   "open": 30,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1833,
+   "open": 31,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1834,
+   "open": 31,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1835,
+   "open": 32,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1836,
+   "open": 33,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1837,
+   "open": 36,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1838,
+   "open": 38,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1839,
+   "open": 38,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1840,
+   "open": 39,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1841,
+   "open": 39,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1842,
+   "open": 39,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1843,
+   "open": 39,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1844,
+   "open": 40,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1845,
+   "open": 43,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1846,
+   "open": 44,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1847,
+   "open": 47,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1848,
+   "open": 48,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1849,
+   "open": 50,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1850,
+   "open": 52,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1851,
+   "open": 56,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1852,
+   "open": 59,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1853,
+   "open": 62,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1854,
+   "open": 62,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1855,
+   "open": 62,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1856,
+   "open": 62,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1857,
+   "open": 62,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1858,
+   "open": 64,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1859,
+   "open": 67,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1860,
+   "open": 68,
+   "opened": 2,
+   "closed": 1
+  },
+  {
+   "y": 1861,
+   "open": 68,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1862,
+   "open": 70,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1863,
+   "open": 75,
+   "opened": 5,
+   "closed": 0
+  },
+  {
+   "y": 1864,
+   "open": 80,
+   "opened": 5,
+   "closed": 0
+  },
+  {
+   "y": 1865,
+   "open": 81,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1866,
+   "open": 85,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1867,
+   "open": 87,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1868,
+   "open": 89,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1869,
+   "open": 93,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1870,
+   "open": 98,
+   "opened": 5,
+   "closed": 0
+  },
+  {
+   "y": 1871,
+   "open": 102,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1872,
+   "open": 105,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1873,
+   "open": 107,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1874,
+   "open": 109,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1875,
+   "open": 111,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1876,
+   "open": 113,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1877,
+   "open": 114,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1878,
+   "open": 115,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1879,
+   "open": 116,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1880,
+   "open": 117,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1881,
+   "open": 117,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1882,
+   "open": 119,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1883,
+   "open": 121,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1884,
+   "open": 122,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1885,
+   "open": 123,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1886,
+   "open": 125,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1887,
+   "open": 125,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1888,
+   "open": 126,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1889,
+   "open": 126,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1890,
+   "open": 126,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1891,
+   "open": 127,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1892,
+   "open": 129,
+   "opened": 2,
+   "closed": 1
+  },
+  {
+   "y": 1893,
+   "open": 131,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1894,
+   "open": 131,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1895,
+   "open": 134,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1896,
+   "open": 136,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1897,
+   "open": 139,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1898,
+   "open": 142,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1899,
+   "open": 145,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1900,
+   "open": 145,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1901,
+   "open": 146,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1902,
+   "open": 149,
+   "opened": 4,
+   "closed": 1
+  },
+  {
+   "y": 1903,
+   "open": 152,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1904,
+   "open": 155,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1905,
+   "open": 159,
+   "opened": 5,
+   "closed": 0
+  },
+  {
+   "y": 1906,
+   "open": 162,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1907,
+   "open": 165,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1908,
+   "open": 167,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1909,
+   "open": 169,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1910,
+   "open": 169,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1911,
+   "open": 169,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1912,
+   "open": 171,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1913,
+   "open": 174,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1914,
+   "open": 175,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1915,
+   "open": 176,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1916,
+   "open": 177,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1917,
+   "open": 178,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1918,
+   "open": 178,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1919,
+   "open": 179,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "y": 1920,
+   "open": 179,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1921,
+   "open": 180,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1922,
+   "open": 180,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1923,
+   "open": 181,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1924,
+   "open": 182,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1925,
+   "open": 182,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1926,
+   "open": 182,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1927,
+   "open": 182,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1928,
+   "open": 182,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1929,
+   "open": 182,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1930,
+   "open": 183,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1931,
+   "open": 184,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1932,
+   "open": 188,
+   "opened": 4,
+   "closed": 0
+  },
+  {
+   "y": 1933,
+   "open": 188,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1934,
+   "open": 190,
+   "opened": 2,
+   "closed": 0
+  },
+  {
+   "y": 1935,
+   "open": 190,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1936,
+   "open": 193,
+   "opened": 3,
+   "closed": 0
+  },
+  {
+   "y": 1937,
+   "open": 194,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1938,
+   "open": 195,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1939,
+   "open": 196,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1940,
+   "open": 195,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 1941,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1942,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1943,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1944,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1945,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1946,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1947,
+   "open": 195,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1948,
+   "open": 196,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1949,
+   "open": 196,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1950,
+   "open": 197,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1951,
+   "open": 197,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1952,
+   "open": 197,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1953,
+   "open": 198,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1954,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1955,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1956,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1957,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1958,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1959,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1960,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1961,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1962,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1963,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1964,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1965,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1966,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1967,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1968,
+   "open": 197,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 1969,
+   "open": 197,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1970,
+   "open": 198,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1971,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1972,
+   "open": 199,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 1973,
+   "open": 199,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1974,
+   "open": 199,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1975,
+   "open": 198,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 1976,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1977,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1978,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1979,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1980,
+   "open": 198,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "y": 1981,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1982,
+   "open": 198,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 1983,
+   "open": 199,
+   "opened": 2,
+   "closed": 1
+  },
+  {
+   "y": 1984,
+   "open": 198,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 1985,
+   "open": 195,
+   "opened": 0,
+   "closed": 3
+  },
+  {
+   "y": 1986,
+   "open": 192,
+   "opened": 0,
+   "closed": 3
+  },
+  {
+   "y": 1987,
+   "open": 190,
+   "opened": 0,
+   "closed": 2
+  },
+  {
+   "y": 1988,
+   "open": 187,
+   "opened": 0,
+   "closed": 3
+  },
+  {
+   "y": 1989,
+   "open": 185,
+   "opened": 1,
+   "closed": 3
+  },
+  {
+   "y": 1990,
+   "open": 185,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "y": 1991,
+   "open": 182,
+   "opened": 0,
+   "closed": 3
+  },
+  {
+   "y": 1992,
+   "open": 176,
+   "opened": 0,
+   "closed": 6
+  },
+  {
+   "y": 1993,
+   "open": 168,
+   "opened": 0,
+   "closed": 8
+  },
+  {
+   "y": 1994,
+   "open": 155,
+   "opened": 0,
+   "closed": 13
+  },
+  {
+   "y": 1995,
+   "open": 138,
+   "opened": 1,
+   "closed": 18
+  },
+  {
+   "y": 1996,
+   "open": 128,
+   "opened": 0,
+   "closed": 10
+  },
+  {
+   "y": 1997,
+   "open": 115,
+   "opened": 0,
+   "closed": 13
+  },
+  {
+   "y": 1998,
+   "open": 108,
+   "opened": 0,
+   "closed": 7
+  },
+  {
+   "y": 1999,
+   "open": 105,
+   "opened": 1,
+   "closed": 4
+  },
+  {
+   "y": 2000,
+   "open": 102,
+   "opened": 2,
+   "closed": 5
+  },
+  {
+   "y": 2001,
+   "open": 97,
+   "opened": 1,
+   "closed": 6
+  },
+  {
+   "y": 2002,
+   "open": 92,
+   "opened": 0,
+   "closed": 5
+  },
+  {
+   "y": 2003,
+   "open": 88,
+   "opened": 1,
+   "closed": 5
+  },
+  {
+   "y": 2004,
+   "open": 87,
+   "opened": 1,
+   "closed": 2
+  },
+  {
+   "y": 2005,
+   "open": 85,
+   "opened": 0,
+   "closed": 2
+  },
+  {
+   "y": 2006,
+   "open": 85,
+   "opened": 2,
+   "closed": 2
+  },
+  {
+   "y": 2007,
+   "open": 86,
+   "opened": 1,
+   "closed": 0
+  },
+  {
+   "y": 2008,
+   "open": 83,
+   "opened": 0,
+   "closed": 3
+  },
+  {
+   "y": 2009,
+   "open": 82,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 2010,
+   "open": 81,
+   "opened": 1,
+   "closed": 2
+  },
+  {
+   "y": 2011,
+   "open": 78,
+   "opened": 1,
+   "closed": 4
+  },
+  {
+   "y": 2012,
+   "open": 78,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "y": 2013,
+   "open": 76,
+   "opened": 0,
+   "closed": 2
+  },
+  {
+   "y": 2014,
+   "open": 76,
+   "opened": 1,
+   "closed": 1
+  },
+  {
+   "y": 2015,
+   "open": 75,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 2016,
+   "open": 74,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 2017,
+   "open": 72,
+   "opened": 0,
+   "closed": 2
+  },
+  {
+   "y": 2018,
+   "open": 70,
+   "opened": 0,
+   "closed": 2
+  },
+  {
+   "y": 2019,
+   "open": 70,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2020,
+   "open": 69,
+   "opened": 0,
+   "closed": 1
+  },
+  {
+   "y": 2021,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2022,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2023,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2024,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2025,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  },
+  {
+   "y": 2026,
+   "open": 69,
+   "opened": 0,
+   "closed": 0
+  }
+ ],
+ "curve": {
+  "n": 222,
+  "left_out": 8,
+  "peak_n": 199,
+  "peak_first": 1972,
+  "peak_last": 1983,
+  "y1845": 43,
+  "y1900": 145,
+  "y1914": 175,
+  "y1961": 198,
+  "y1980": 198,
+  "y2000": 102,
+  "y2026": 69,
+  "y1850": 52,
+  "fall_1961_2000_pct": 48.5
+ },
+ "since1961": {
+  "open_1961": 198,
+  "closed_since": 149,
+  "closed_since_pct": 75.3,
+  "still_open": 49,
+  "median_close": 1996,
+  "closed_1980_1999": 100,
+  "closed_1980_1999_pct": 67.1
+ },
+ "beds": {
+  "n": 96,
+  "pct": 39.3,
+  "infobox": 34,
+  "text": 62,
+  "over1000": 30,
+  "over2000": 10,
+  "median": 357,
+  "top": [
+   {
+    "title": "Whittingham Hospital",
+    "beds": 3533,
+    "src": "infobox",
+    "phrase": "3533 in 1939",
+    "opened": 1873,
+    "closed": 1995,
+    "county": "Lancashire"
+   },
+   {
+    "title": "Prestwich Hospital",
+    "beds": 3135,
+    "src": "text",
+    "phrase": "d an annex was built in 1883. By 1903 it was accommodating 3,135 patients making it the large",
+    "opened": 1851,
+    "closed": null,
+    "county": "Greater Manchester"
+   },
+   {
+    "title": "Storthes Hall Hospital",
+    "beds": 3000,
+    "src": "text",
+    "phrase": ", England. Founded in 1904, it expanded to accommodate over 3,000 patients during the Second W",
+    "opened": 1904,
+    "closed": 1992,
+    "county": "West Yorkshire"
+   },
+   {
+    "title": "Friern Hospital",
+    "beds": 2500,
+    "src": "text",
+    "phrase": "lum also operated. At its height, Colney Hatch was home to 2,500 mental patients and had the longest",
+    "opened": 1849,
+    "closed": 1993,
+    "county": "Greater London"
+   },
+   {
+    "title": "Claybury Hospital",
+    "beds": 2500,
+    "src": "infobox",
+    "phrase": "2,500",
+    "opened": 1893,
+    "closed": 1997,
+    "county": "Greater London"
+   },
+   {
+    "title": "Middlewood Hospital",
+    "beds": 2000,
+    "src": "text",
+    "phrase": "d mental health accommodation for South Yorkshire with over 2,000 beds. By the 1970s it",
+    "opened": 1872,
+    "closed": 1996,
+    "county": "South Yorkshire"
+   },
+   {
+    "title": "Bexley Hospital",
+    "beds": 2000,
+    "src": "text",
+    "phrase": "Building the hospital cost £34,000, and it was designed for 2,000 patients. By 1939, the main ",
+    "opened": 1898,
+    "closed": 2001,
+    "county": "Kent"
+   },
+   {
+    "title": "Cane Hill Hospital",
+    "beds": 2000,
+    "src": "text",
+    "phrase": "hospital in 1889 and expanded the hospital to a capacity of 2,000 beds the same year. The ",
+    "opened": 1882,
+    "closed": 2008,
+    "county": "Greater London"
+   },
+   {
+    "title": "Warley Hospital",
+    "beds": 2000,
+    "src": "text",
+    "phrase": "ent. Following these further enlargements, the hospital had 2,000 beds by 1937. Several mi",
+    "opened": 1853,
+    "closed": 2001,
+    "county": "Essex"
+   },
+   {
+    "title": "West Park Hospital, Epsom",
+    "beds": 2000,
+    "src": "text",
+    "phrase": "uster. When complete the hospital could cater for around 2,000 patients of mixed class. The",
+    "opened": 1921,
+    "closed": 2003,
+    "county": "Surrey"
+   },
+   {
+    "title": "Banstead Hospital",
+    "beds": 1700,
+    "src": "text",
+    "phrase": "y Frederick Hyde Pownall, and opened with accommodation for 1,700 patients in 1877. Two more b",
+    "opened": 1877,
+    "closed": 1986,
+    "county": "Surrey"
+   },
+   {
+    "title": "Central Hospital, Hatton",
+    "beds": 1600,
+    "src": "text",
+    "phrase": "n a grand scale in the gothic style, it at one point housed 1,600 patients. Eventually gainin",
+    "opened": 1852,
+    "closed": 1995,
+    "county": "Warwickshire"
+   },
+   {
+    "title": "Horton Hospital",
+    "beds": 1587,
+    "src": "text",
+    "phrase": "for redevelopment. At its peak in 1971, the hospital had 1,587 beds and treated 1,438 p",
+    "opened": 1902,
+    "closed": 1997,
+    "county": "Surrey"
+   },
+   {
+    "title": "North Wales Hospital",
+    "beds": 1500,
+    "src": "infobox",
+    "phrase": "1,500 (at peak)",
+    "opened": 1844,
+    "closed": 1995,
+    "county": "Clwyd"
+   },
+   {
+    "title": "Manor Hospital, Epsom",
+    "beds": 1417,
+    "src": "text",
+    "phrase": "n for industrial and behavioural therapy and by 1951 it had 1417 beds. In 1971 there wer",
+    "opened": 1899,
+    "closed": 1996,
+    "county": "Surrey"
+   }
+  ],
+  "vic_n": 67,
+  "vic_median": 500,
+  "modern_n": 9,
+  "modern_median": 122
+ },
+ "epsom": {
+  "n": 5,
+  "opened_min": 1899,
+  "opened_max": 1921,
+  "closed_min": 1992,
+  "closed_max": 2003,
+  "max_km": 2.1,
+  "beds_sum": 5937,
+  "beds_n": 4,
+  "km_london": 21.3,
+  "lat": 51.344,
+  "lon": -0.2869,
+  "rows": [
+   [
+    "Manor Hospital, Epsom",
+    1899,
+    1996,
+    1417,
+    "unknown"
+   ],
+   [
+    "Horton Hospital",
+    1902,
+    1997,
+    1587,
+    "homes"
+   ],
+   [
+    "St Ebba's Hospital",
+    1904,
+    null,
+    933,
+    "health"
+   ],
+   [
+    "Long Grove Hospital",
+    1907,
+    1992,
+    null,
+    "homes"
+   ],
+   [
+    "West Park Hospital, Epsom",
+    1921,
+    2003,
+    2000,
+    "homes"
+   ]
+  ],
+  "still_open": 1
+ },
+ "london": {
+  "ring_n": 32,
+  "ring_vic": 28,
+  "inner_n": 9,
+  "inner_vic": 7,
+  "ring_beds_sum": 21542,
+  "ring_beds_n": 16,
+  "ring_counties": [
+   [
+    "Surrey",
+    11
+   ],
+   [
+    "Greater London",
+    8
+   ],
+   [
+    "Hertfordshire",
+    4
+   ],
+   [
+    "Kent",
+    3
+   ],
+   [
+    "Essex",
+    2
+   ]
+  ],
+  "ring_closed": 24,
+  "ring_homes": 16,
+  "ring_median_km": 22.2,
+  "ring_closed_1980_1999": 18,
+  "ring_homes_pct": 57.1,
+  "ring_closed_pct": 85.7,
+  "ring_outside_gl": 20
+ },
+ "fates": {
+  "health": 71,
+  "homes": 81,
+  "other": 17,
+  "demolished": 22,
+  "derelict": 2,
+  "unknown": 51
+ },
+ "fates_pct": {
+  "health": 29.1,
+  "homes": 33.2,
+  "other": 7.0,
+  "demolished": 9.0,
+  "derelict": 0.8,
+  "unknown": 20.9
+ },
+ "fates_closed": {
+  "n": 173,
+  "health": 0,
+  "homes": 81,
+  "other": 17,
+  "demolished": 22,
+  "derelict": 2,
+  "unknown": 51,
+  "known": 122,
+  "homes_of_known_pct": 66.4
+ },
+ "fates_closed_pct": {
+  "health": 0.0,
+  "homes": 46.8,
+  "other": 9.8,
+  "demolished": 12.7,
+  "derelict": 1.2,
+  "unknown": 29.5
+ },
+ "fates_detail": {
+  "src_lead": 92,
+  "src_text": 101,
+  "homes_with_demolition": 25,
+  "homes_converted": 35,
+  "plans_only": 2,
+  "any_demolition": 61
+ },
+ "fates_vic": {
+  "n": 173,
+  "health": 32,
+  "homes": 73,
+  "other": 14,
+  "demolished": 16,
+  "derelict": 1,
+  "unknown": 37
+ },
+ "fates_vic_pct": {
+  "health": 18.5,
+  "homes": 42.2,
+  "other": 8.1,
+  "demolished": 9.2,
+  "derelict": 0.6,
+  "unknown": 21.4
+ },
+ "listed": {
+  "n": 83,
+  "pct": 34.0,
+  "grades": {
+   "Grade II": 43,
+   "listed": 12,
+   "Grade II*": 12,
+   "Category A": 8,
+   "Category B": 5,
+   "Grade I": 3
+  },
+  "src_text": 73,
+  "src_cat": 10,
+  "vic_n": 63,
+  "vic_pct": 36.4,
+  "modern_n": 3,
+  "modern_of": 24,
+  "homes_listed": 33,
+  "homes_listed_pct": 40.7,
+  "grade1": [
+   "Bootham Park Hospital",
+   "Holloway Sanatorium",
+   "Grove Place"
+  ],
+  "catA": 8,
+  "star": 12,
+  "g2": 43
+ },
+ "town": {
+  "n_big": 41,
+  "median": 18.7,
+  "n": 233,
+  "pre1845": {
+   "n": 41,
+   "median": 16.1,
+   "over5": 26,
+   "over5_pct": 63.4,
+   "over15": 21,
+   "over15_pct": 51.2
+  },
+  "y1845_1914": {
+   "n": 138,
+   "median": 20.4,
+   "over5": 121,
+   "over5_pct": 87.7,
+   "over15": 88,
+   "over15_pct": 63.8
+  },
+  "y1915_1947": {
+   "n": 21,
+   "median": 15.2,
+   "over5": 18,
+   "over5_pct": 85.7,
+   "over15": 11,
+   "over15_pct": 52.4
+  },
+  "y1948_": {
+   "n": 24,
+   "median": 16.0,
+   "over5": 17,
+   "over5_pct": 70.8,
+   "over15": 13,
+   "over15_pct": 54.2
+  },
+  "vic_over5_vs_modern": [
+   87.7,
+   70.8
+  ],
+  "farthest": [
+   [
+    "New Craigs Psychiatric Hospital",
+    135.1,
+    "Dundee"
+   ],
+   [
+    "Craig Dunain Hospital",
+    134.8,
+    "Dundee"
+   ],
+   [
+    "Ballamona Hospital",
+    102.7,
+    "Blackpool"
+   ],
+   [
+    "The Crichton",
+    100.8,
+    "Glasgow"
+   ],
+   [
+    "Midpark Hospital",
+    100.8,
+    "Glasgow"
+   ]
+  ]
+ },
+ "names": {
+  "n_with_old": 188,
+  "lunatic_asylum": 59,
+  "asylum_any": 141,
+  "mental_hospital": 82,
+  "psychiatric_hospital": 3,
+  "institution": 16,
+  "saint_titles": 35,
+  "asylum_then_mh": 73,
+  "now_hospital_title": 208,
+  "title_asylum": 5,
+  "asylum_any_pct": 57.8,
+  "mental_hospital_pct": 33.6,
+  "saint_pct": 14.3,
+  "mh_years_n": 33,
+  "mh_years_1920_1939": 21,
+  "mh_years_pct": 63.6,
+  "mh_years_median": 1920,
+  "mh_years_1930_1934": 5,
+  "saint_years_n": 7,
+  "saint_years_1948_1965": 3,
+  "mh_hist": {
+   "1900": 2,
+   "1910": 6,
+   "1920": 16,
+   "1930": 5,
+   "1940": 2,
+   "1950": 2
+  },
+  "examples": [
+   [
+    "Exminster Hospital",
+    [
+     "Exminster Hospital",
+     "Devon County Lunatic Asylum",
+     "Devon Mental Hospital",
+     "Exe Vale Hospital"
+    ]
+   ],
+   [
+    "Digby Hospital",
+    [
+     "Digby Hospital",
+     "City of Exeter Lunatic Asylum",
+     "Exeter City Mental Hospital",
+     "Exe Vale Hospital"
+    ]
+   ],
+   [
+    "Rubery Hill Hospital",
+    [
+     "Rubery Hill Hospital",
+     "Second Birmingham City Asylum",
+     "Birmingham War Hospital",
+     "Rubery Hill Mental Hospital"
+    ]
+   ],
+   [
+    "Stone House Hospital",
+    [
+     "Stone House Hospital",
+     "City of London Lunatic Asylum",
+     "City of London Mental Hospital"
+    ]
+   ],
+   [
+    "Ballamona Hospital",
+    [
+     "Ballamona Hospital",
+     "Isle of Man Lunatic Asylum",
+     "Isle of Man Mental Hospital",
+     "Mental Hospital"
+    ]
+   ]
+  ]
+ },
+ "wiki": {
+  "revids": {
+   "Lunacy_Act_1845": 1381879602,
+   "County_Asylums_Act_1808": 1376311728,
+   "Lunatic_asylum": 1380692579,
+   "Bethlem_Royal_Hospital": 1373954755,
+   "Psychiatric_hospital": 1382206436,
+   "Care_in_the_Community": 1363393160,
+   "Water_tower": 1380693836,
+   "Colney_Hatch_Lunatic_Asylum": 1362267147,
+   "Epsom_Cluster": 1335081305,
+   "Severalls_Hospital": 1362315099,
+   "Whittingham_Hospital": 1382295066,
+   "Lancaster_Moor_Hospital": 1362285797,
+   "List_of_hospitals_in_England": 1357835030,
+   "Mental_Health_Act_1959": 1383285430,
+   "Enoch_Powell#Water_Tower_speech": 1381404394,
+   "Mental_Treatment_Act_1930": 1383176284,
+   "Madhouses_Act_1774": 1381750101
+  },
+  "powell_quote": "There they stand, isolated, majestic, imperious, brooded over by the gigantic water-tower and chimney combined, rising unmistakable and daunting out of the countryside, the asylums which our forefathers built with such immense solidity to express the notions of their day",
+  "missing": [
+   "List_of_psychiatric_hospitals_in_the_United_Kingdom",
+   "County_asylum",
+   "Hospital_Plan_for_England_and_Wales"
+  ]
+ },
+ "meta": {
+  "page": "https://maps.tristanhotham.com/asylums/",
+  "repo": "https://github.com/Tristan-Hotham/asylums",
+  "doi": "10.5281/zenodo.23873001",
+  "blog": "https://blog.tristanhotham.com/2026/10/31/asylums/",
+  "slug": "asylums"
+ }
+}
